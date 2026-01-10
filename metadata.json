@@ -1,0 +1,5 @@
+{
+  "name": "高量化资产管理终端",
+  "description": "一个专业的股票估值与多方资产净值管理系统，基于ROIC、动态收益及未来分红模型进行价值分析。",
+  "requestFramePermissions": []
+}
