@@ -1,14 +1,14 @@
 
 import { CalculatedStock, StockConfig, GlobalState, TagAllocation } from '../types';
-import { 
-  ZHE_XIAN, 
-  RAW_PROPERTIES, 
-  RAW_STOCKS, 
-  TAG_RATIO_MAP, 
-  MI_RATIO, 
-  MA_RATIO, 
-  ALL_DEBT, 
-  MA_YEAR_START_ASSET 
+import {
+  ZHE_XIAN,
+  RAW_PROPERTIES,
+  RAW_STOCKS,
+  TAG_RATIO_MAP,
+  MI_RATIO,
+  MA_RATIO,
+  ALL_DEBT,
+  MA_YEAR_START_ASSET
 } from '../constants';
 import { fetchStockPrices, fetchExchangeRates } from './api';
 
@@ -16,29 +16,40 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  * 股票数据预处理：计算 ROIC 和 预期增速
  */
 export const preprocessStock = (stock: StockConfig) => {
-  if (stock.利润表) {
+  if (stock.利润表 && stock.roic表 && stock.现金) {
+    const roicTable = stock.roic表;
+    const profitTable = stock.利润表;
+    const cashTable = stock.现金;
+
     // 用近5年的roic和最新一年的roic取平均（避免低估roic在持续改善的公司）
     stock.roic =
-      (stock.roic表[4] +
-        (100 * stock.利润表.reduce((prev, next) => prev + next, 0)) /
-          (stock.利润表[0] / (stock.roic表[0] / 100) +
-            stock.利润表[1] / (stock.roic表[1] / 100) +
-            stock.利润表[2] / (stock.roic表[2] / 100) +
-            stock.利润表[3] / (stock.roic表[3] / 100) +
-            stock.利润表[4] / (stock.roic表[4] / 100))) /2
+      (roicTable[4] +
+        (100 * profitTable.reduce((prev, next) => prev + next, 0)) /
+        (profitTable[0] / (roicTable[0] / 100) +
+          profitTable[1] / (roicTable[1] / 100) +
+          profitTable[2] / (roicTable[2] / 100) +
+          profitTable[3] / (roicTable[3] / 100) +
+          profitTable[4] / (roicTable[4] / 100))) / 2;
     // 净现比
     stock.cashP =
-      stock.现金.reduce((prev, next) => prev + next, 0) /
-      stock.利润表.reduce((prev, next) => prev + next, 0)
-  } else {
+      cashTable.reduce((prev, next) => prev + next, 0) /
+      profitTable.reduce((prev, next) => prev + next, 0);
+  } else if (stock.roic表) {
     // 沪深300没有利润表处理的，由于银行占比高，以及亏损股的存在，roic有失真，要还原
-    stock.roic = (0.7 * stock.roic表.reduce((prev, cur) => prev + cur, 0)) / 5
-    stock.cashP = 1
+    stock.roic = (0.7 * stock.roic表.reduce((prev, cur) => prev + cur, 0)) / 5;
+    stock.cashP = 1;
+  } else {
+    stock.roic = 0;
+    stock.cashP = 1;
   }
 
-  // 3年后的增速，取未来3年均值的70%乘以折价，为了避免成长股过于乐观导致安全边际太小，将3年均值70%封顶10%
-  stock.g =
-    stock.折价 * Math.min((0.7 * stock.增速.reduce((prev, next) => prev + next, 0)) / 300, 0.1)
+  // 3年后的增速，取未来3年均值的70%乘以折价
+  if (stock.增速 && stock.增速.length > 0) {
+    stock.g =
+      stock.折价 * Math.min((0.7 * stock.增速.reduce((prev, next) => prev + next, 0)) / 300, 0.1);
+  } else {
+    stock.g = 0;
+  }
 };
 
 /**
@@ -58,67 +69,64 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const extraValue = stock.额外价值 || 0;
 
   // 1. ROIC 估值分量 (上限 30)
-  const roicPe = Math.min(30, roic * cashP * zhejia)
-  
-  // 2. 历史估值分量 (上限 30)
-  const historyPe = Math.min(30, historicalPe * zhejia)
-  
-  // 3. 增速计算pe。不算第一年的，因为最终是用动态pe来对比
-    const g1 = 1 + g
-    const y2 = 1 + stock.增速[1] / 100
-    const y3 = y2 * (1 + stock.增速[2] / 100)
-    const y4 = y3 * g1
-    const y5 = y4 * g1
-    const y6 = y5 * g1
-    const y7 = y6 * g1
-    const y8 = y7 * g1
-    const y9 = y8 * g1
-    const y10 = y9 * g1
-    // 取1.2是为了和折价修正，即S企业可以适用原版的计算规则
-    const growPe = Math.min(
-      30,
-      zhejia * 1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
-    )
+  const roicPe = Math.min(30, roic * cashP * zhejia);
 
-  // 综合合理 PE = (三个维度分别封顶 30 后的平均值) * 安全折价
+  // 2. 历史估值分量 (上限 30)
+  const historyPe = Math.min(30, historicalPe * zhejia);
+
+  // 3. 增速计算pe
+  const g1 = 1 + g;
+  const growthList = stock.增速 || [0, 0, 0];
+  const y2 = 1 + (growthList[1] || 0) / 100;
+  const y3 = y2 * (1 + (growthList[2] || 0) / 100);
+  const y4 = y3 * g1;
+  const y5 = y4 * g1;
+  const y6 = y5 * g1;
+  const y7 = y6 * g1;
+  const y8 = y7 * g1;
+  const y9 = y8 * g1;
+  const y10 = y9 * g1;
+
+  const growPe = Math.min(
+    30,
+    zhejia * 1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
+  );
+
+  // 综合合理 PE
   const normalPe = (historyPe + roicPe + growPe) / 3;
-  
-  // 实际 PE (当前价 / 动态每股收益)
   const zhenshiPe = price / (dynamicYield || 1);
 
-  // 计算 PE 估值得分 (PEV)
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
     return 70 * (normalPe / (zPe || 1) - 1);
   };
 
-  // 计算 PB/分红 估值得分 (PBV - 10 年现金流回馈折现)
   const calculatePbv = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
-    const y1 = 100 / zPe
-    const y2 = (y1 * (1 + stock.增速[1] / 100)) / (1 + ZHE_XIAN)
-    const y3 = (y2 * (1 + stock.增速[2] / 100)) / (1 + ZHE_XIAN)
-    const y4 = (y3 * (1 + g)) / (1 + ZHE_XIAN)
-    const y5 = (y4 * (1 + g)) / (1 + ZHE_XIAN)
-    const y6 = (y5 * (1 + g)) / (1 + ZHE_XIAN)
-    const y7 = (y6 * (1 + g)) / (1 + ZHE_XIAN)
-    const y8 = (y7 * (1 + g)) / (1 + ZHE_XIAN)
-    const y9 = (y8 * (1 + g)) / (1 + ZHE_XIAN)
-    const y10 = (y9 * (1 + g)) / (1 + ZHE_XIAN)
+    const y1 = 100 / zPe;
+    const dy2 = (y1 * (1 + (growthList[1] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy3 = (dy2 * (1 + (growthList[2] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy4 = (dy3 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy5 = (dy4 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy6 = (dy5 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy7 = (dy6 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy8 = (dy7 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy9 = (dy8 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy10 = (dy9 * (1 + g)) / (1 + ZHE_XIAN);
     return (
       (zhejia *
         (bonusRate * equityZhejia + buybackRate) *
-        (y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)) /
+        (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10)) /
       100
-    )
+    );
   };
 
   const v1Num = calculatePev(price) + calculatePbv(price) + extraValue;
   const v1 = v1Num.toFixed(2);
-  
+
   const p2 = price * 1.05;
   const v2 = (calculatePev(p2) + calculatePbv(p2) + extraValue).toFixed(2);
-  
+
   const p3 = price * 0.95;
   const v3 = (calculatePev(p3) + calculatePbv(p3) + extraValue).toFixed(2);
 
@@ -133,18 +141,15 @@ export async function fetchDashboardData(): Promise<{
   stocks: CalculatedStock[];
   allocations: TagAllocation[];
 }> {
-  // 1. 确定需要更新行情的代码
   const codesToFetch = new Set<string>();
   RAW_PROPERTIES.forEach(p => { if (p.code) codesToFetch.add(p.code); });
   Object.values(RAW_STOCKS).forEach(s => { if (s.code && !s.onlyPrice) codesToFetch.add(s.code); });
 
-  // 2. 调用 API 模块拉取数据
   const [rates, priceMap] = await Promise.all([
     fetchExchangeRates(),
     fetchStockPrices(Array.from(codesToFetch))
   ]);
 
-  // 3. 执行资产汇总财务逻辑
   const tagTotals: Record<string, number> = {};
   let allDanBao = 0;
 
@@ -158,21 +163,20 @@ export async function fetchDashboardData(): Promise<{
 
     if (isNaN(total)) total = 0;
     if (p.danbao) allDanBao += total;
-    
+
     tagTotals[p.tag] = (tagTotals[p.tag] || 0) + total;
   });
 
-  // 4. 计算全局仪表盘指标
   const nowTotalTotal = Object.values(tagTotals).reduce((acc, curr) => acc + curr, 0);
   const allClean = nowTotalTotal - ALL_DEBT;
   const maxDebt = allDanBao * 0.25;
   const availableDebt = Math.max(0, maxDebt - ALL_DEBT);
   const allTotal = allClean + maxDebt;
-  
+
   const miAsset = allClean * MI_RATIO;
   const maAsset = allClean * MA_RATIO;
   const myAsset = allClean - miAsset - maAsset;
-  
+
   const yieldValue = ((100 * (maAsset - MA_YEAR_START_ASSET)) / MA_YEAR_START_ASSET);
   const yieldPct = isNaN(yieldValue) ? "0.00" : yieldValue.toFixed(2);
   const debtRatio = ALL_DEBT === 0 ? 0 : Math.floor((100 * (allDanBao + ALL_DEBT)) / ALL_DEBT);
@@ -191,7 +195,6 @@ export async function fetchDashboardData(): Promise<{
     myAsset
   };
 
-  // 5. 执行个股建模逻辑
   const stockResults: CalculatedStock[] = [];
   for (const [name, config] of Object.entries(RAW_STOCKS)) {
     if (!config.onlyPrice) {
@@ -201,7 +204,6 @@ export async function fetchDashboardData(): Promise<{
   }
   const stocks = stockResults.sort((a, b) => Number(b.v) - Number(a.v));
 
-  // 6. 执行资产配置分析逻辑
   const allocData: TagAllocation[] = Object.keys(TAG_RATIO_MAP).map(tag => {
     const target = TAG_RATIO_MAP[tag];
     const current = tagTotals[tag] || 0;
@@ -210,7 +212,7 @@ export async function fetchDashboardData(): Promise<{
     const relDev = target > 0 ? (departure / target) * 100 : (realRatio > 0 ? 100 : 0);
     return { tag, targetRatio: target, currentTotal: current, realRatio, departure, departureRatio: relDev };
   });
-  
+
   const allocations = allocData.sort((a, b) => (b.realRatio as number) - (a.realRatio as number));
 
   return { globalState, stocks, allocations };
