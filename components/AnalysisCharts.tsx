@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, ReferenceLine, LabelList
 } from 'recharts';
-import { Activity, PieChart as PieChartIcon } from 'lucide-react';
+import { Activity, PieChart as PieChartIcon, ArrowRightLeft } from 'lucide-react';
 import { TagAllocation } from '../types';
 import { CardSkeleton } from './Skeletons';
 
@@ -13,29 +13,68 @@ const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f97316', '#eab308'
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload as TagAllocation;
+    const isOver = data.departureAmountCNY > 0;
+
     return (
-      <div className="bg-white p-4 rounded-xl shadow-xl border border-slate-100 text-sm min-w-[200px]">
-        <p className="font-bold text-slate-900 mb-2 border-b pb-1">{label}</p>
-        <div className="space-y-1.5">
-          <div className="flex justify-between gap-4">
-            <span className="text-slate-500">目标比例</span>
-            <span className="font-medium text-slate-700">{(data.targetRatio as number).toFixed(2)}%</span>
+      <div className="bg-white p-4 rounded-xl shadow-2xl border border-slate-100 text-sm min-w-[260px] animate-in fade-in zoom-in duration-200">
+        <div className="flex items-center gap-2 mb-3 border-b pb-2">
+          <div className={`w-2 h-2 rounded-full ${isOver ? 'bg-amber-500' : 'bg-emerald-500'}`}></div>
+          <p className="font-black text-slate-900 text-base">{label}</p>
+        </div>
+
+        <div className="space-y-3">
+          {/* 比例概览 */}
+          <div className="grid grid-cols-2 gap-2 bg-slate-50 p-2 rounded-lg">
+            <div>
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">目标比例</p>
+              <p className="font-bold text-slate-700">{(data.targetRatio as number).toFixed(2)}%</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">实际比例</p>
+              <p className="font-bold text-slate-900">{(data.realRatio as number).toFixed(2)}%</p>
+            </div>
           </div>
-          <div className="flex justify-between gap-4">
-            <span className="text-slate-500">当前比例</span>
-            <span className="font-medium text-slate-700">{(data.realRatio as number).toFixed(2)}%</span>
-          </div>
-          <div className="flex justify-between gap-4 pt-1 mt-1 border-t border-slate-50">
-            <span className="text-indigo-600 font-bold">相对偏差</span>
-            <span className={`font-black ${
-              Math.abs(data.departureRatio as number) > 15 
-                ? 'text-rose-600' 
-                : Math.abs(data.departureRatio as number) > 10 
-                  ? 'text-amber-500' 
+
+          {/* 相对偏差百分比 */}
+          <div className="flex justify-between items-center px-1">
+            <span className="text-slate-500 font-medium">相对偏差率</span>
+            <span className={`font-black text-base ${Math.abs(data.departureRatio as number) > 15
+                ? 'text-rose-600'
+                : Math.abs(data.departureRatio as number) > 10
+                  ? 'text-amber-500'
                   : 'text-indigo-600'
-            }`}>
-              {(data.departureRatio as number).toFixed(2)}%
+              }`}>
+              {(data.departureRatio as number > 0 ? '+' : '')}{(data.departureRatio as number).toFixed(2)}%
             </span>
+          </div>
+
+          {/* 偏差金额板块 - 决策核心 */}
+          <div className="border-t border-slate-100 pt-3">
+            <div className="flex items-center gap-1.5 mb-2">
+              <ArrowRightLeft className="w-3.5 h-3.5 text-slate-400" />
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">需{isOver ? '减仓' : '补仓'}金额</span>
+            </div>
+
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-baseline font-mono">
+                <span className="text-[10px] font-bold text-slate-400">CNY</span>
+                <span className={`text-sm font-black ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>
+                  ¥{Math.abs(Math.floor(data.departureAmountCNY)).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-baseline font-mono">
+                <span className="text-[10px] font-bold text-slate-400">USD</span>
+                <span className={`text-xs font-bold ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>
+                  ${Math.abs(data.departureAmountUSD).toFixed(2).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-baseline font-mono">
+                <span className="text-[10px] font-bold text-slate-400">HKD</span>
+                <span className={`text-xs font-bold ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>
+                  ${Math.abs(data.departureAmountHKD).toFixed(2).toLocaleString()}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -117,7 +156,7 @@ export const AnalysisCharts: React.FC<{ allocations: TagAllocation[], loading: b
                   else if (dev > 10) fill = '#facc15';
                   return <Cell key={`cell-${index}`} fill={fill} />;
                 })}
-                <LabelList dataKey="departureRatio" position="top" formatter={(val: number) => `${val.toFixed(1)}%`} style={{ fontSize: '10px', fontWeight: '800', fill: '#475569' }} />
+                <LabelList dataKey="departureRatio" position="top" formatter={(val: number) => `${(val > 0 ? '+' : '')}${val.toFixed(1)}%`} style={{ fontSize: '10px', fontWeight: '800', fill: '#475569' }} />
               </Bar>
             </BarChart>
           </ResponsiveContainer>

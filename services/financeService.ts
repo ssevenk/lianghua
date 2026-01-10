@@ -204,13 +204,38 @@ export async function fetchDashboardData(): Promise<{
   }
   const stocks = stockResults.sort((a, b) => Number(b.v) - Number(a.v));
 
+  // 计算资产偏差及偏差金额
   const allocData: TagAllocation[] = Object.keys(TAG_RATIO_MAP).map(tag => {
-    const target = TAG_RATIO_MAP[tag];
-    const current = tagTotals[tag] || 0;
-    const realRatio = (100 * current) / (allTotal || 1);
-    const departure = realRatio - target;
-    const relDev = target > 0 ? (departure / target) * 100 : (realRatio > 0 ? 100 : 0);
-    return { tag, targetRatio: target, currentTotal: current, realRatio, departure, departureRatio: relDev };
+    const targetRatio = TAG_RATIO_MAP[tag];
+    const currentTotal = tagTotals[tag] || 0;
+    const realRatio = (100 * currentTotal) / (allTotal || 1);
+
+    // 偏差百分点
+    const departure = realRatio - targetRatio;
+
+    // 相对偏差率 (例如偏离了目标的 10%)
+    const departureRatio = targetRatio > 0 ? (departure / targetRatio) * 100 : (realRatio > 0 ? 100 : 0);
+
+    // 偏差金额计算 (人民币)
+    // 目标应有金额 = 总资产 * 目标比例
+    const targetAmountCNY = (allTotal * targetRatio) / 100;
+    const departureAmountCNY = currentTotal - targetAmountCNY;
+
+    // 换算为美元和港币 (使用 conversion_rates 比例：1 CNY = X USD)
+    const departureAmountUSD = departureAmountCNY * rates.us;
+    const departureAmountHKD = departureAmountCNY * rates.hk;
+
+    return {
+      tag,
+      targetRatio,
+      currentTotal,
+      realRatio,
+      departure,
+      departureRatio,
+      departureAmountCNY,
+      departureAmountUSD,
+      departureAmountHKD
+    };
   });
 
   const allocations = allocData.sort((a, b) => (b.realRatio as number) - (a.realRatio as number));

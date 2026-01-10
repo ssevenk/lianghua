@@ -47,15 +47,17 @@ export interface CalculatedStock extends StockConfig {
   cashP: number;
 }
 
-// Added index signature to satisfy Recharts and other charting libraries that 
-// require dynamic property access (Index signature for type 'string').
+// 增强资产配置计算结果接口
 export interface TagAllocation {
   tag: string;
   targetRatio: number;
   currentTotal: number;
   realRatio: number;
-  departure: number;
-  departureRatio: number;
+  departure: number; // 百分点偏差
+  departureRatio: number; // 相对偏差率
+  departureAmountCNY: number; // 偏差金额 (人民币)
+  departureAmountUSD: number; // 偏差金额 (美元)
+  departureAmountHKD: number; // 偏差金额 (港币)
   [key: string]: string | number | boolean | undefined;
 }
 
