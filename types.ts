@@ -15,7 +15,6 @@ export interface StockConfig {
   周期?: number;
   onlyPrice?: boolean;
   ifPrice?: number;
-  // Added optional fields for preprocessing results
   roic?: number;
   cashP?: number;
   g?: number;
@@ -47,17 +46,24 @@ export interface CalculatedStock extends StockConfig {
   cashP: number;
 }
 
-// 增强资产配置计算结果接口
 export interface TagAllocation {
   tag: string;
   targetRatio: number;
   currentTotal: number;
   realRatio: number;
-  departure: number; // 百分点偏差
-  departureRatio: number; // 相对偏差率
-  departureAmountCNY: number; // 偏差金额 (人民币)
-  departureAmountUSD: number; // 偏差金额 (美元)
-  departureAmountHKD: number; // 偏差金额 (港币)
+  departure: number;
+  departureRatio: number;
+  departureAmountCNY: number;
+  departureAmountUSD: number;
+  departureAmountHKD: number;
+  [key: string]: string | number | boolean | undefined;
+}
+
+export interface PieItem {
+  name: string;
+  value: number;
+  ratio: number;
+  // Fix: Add index signature to allow Recharts to access properties dynamically
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -71,7 +77,7 @@ export interface GlobalState {
   allTotal: number;
   debt: number;
   debtRatio: number;
-  availableDebt: number; // 虚金 (剩余可用债务)
+  availableDebt: number;
   yield: string;
   miAsset: number;
   maAsset: number;
