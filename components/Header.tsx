@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { TrendingUp, Download, CheckCircle2, Clock } from 'lucide-react';
 import { GlobalState, CalculatedStock, TagAllocation } from '../types';
 import { MI_INITIAL, MA_INITIAL } from '../constants';
@@ -11,7 +11,7 @@ interface HeaderProps {
   lastUpdated: Date;
 }
 
-export const Header: React.FC<HeaderProps> = ({ globalState, stocks, allocations, lastUpdated }) => {
+const HeaderComponent: React.FC<HeaderProps> = ({ globalState, stocks, allocations, lastUpdated }) => {
   const [downloading, setDownloading] = useState(false);
   
   const handleExport = () => {
@@ -94,7 +94,6 @@ export const Header: React.FC<HeaderProps> = ({ globalState, stocks, allocations
             <div className="flex items-center gap-2.5 sm:gap-4">
               <h1 className="text-sm sm:text-lg font-black text-slate-900 leading-tight truncate tracking-tight">高量化资产终端</h1>
               
-              {/* 更加醒目的更新时间标签 */}
               <div className="flex items-center gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-1 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-100 shadow-sm">
                 <Clock className="w-3 h-3 sm:w-3.5 h-3.5 animate-pulse" />
                 <span className="text-[11px] sm:text-sm font-black tracking-tight whitespace-nowrap tabular-nums">
@@ -132,3 +131,5 @@ export const Header: React.FC<HeaderProps> = ({ globalState, stocks, allocations
     </nav>
   );
 };
+
+export const Header = memo(HeaderComponent);

@@ -1,9 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>高量化资产管理终端</title>
+    <!-- 性能优化：预连接与预加载 -->
+    <link rel="preconnect" href="https://esm.sh">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- 预加载关键模块，减少瀑布流延迟 -->
+    <link rel="modulepreload" href="./index.tsx">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -26,7 +36,6 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
-    <!-- 使用相对路径引用入口文件，确保在各种托管环境下路径正确 -->
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>

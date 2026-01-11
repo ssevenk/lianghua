@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 
 interface MiniStatProps { 
   title: string; 
@@ -12,7 +12,7 @@ interface MiniStatProps {
   large?: boolean;
 }
 
-export const MiniStat: React.FC<MiniStatProps> = ({ title, value, icon, highlight, color = 'default', isRatio = false, subInfo, large = false }) => {
+const MiniStatComponent: React.FC<MiniStatProps> = ({ title, value, icon, highlight, color = 'default', isRatio = false, subInfo, large = false }) => {
   const colorStyles = { 
     default: 'text-slate-400', 
     pink: 'text-pink-400', 
@@ -41,3 +41,5 @@ export const MiniStat: React.FC<MiniStatProps> = ({ title, value, icon, highligh
     </div>
   );
 };
+
+export const MiniStat = memo(MiniStatComponent);
