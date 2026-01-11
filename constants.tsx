@@ -14,7 +14,7 @@ export const MI_RATIO = 0.06360564;
 export const MA_RATIO = 0.19874307;
 
 // 初始资金常量
-export const MI_INITIAL = 161000;
+export const MI_INITIAL = 166000;
 export const MA_INITIAL = 400000;
 // 妈妈今年初始资产 (用于收益率计算基准)
 export const MA_YEAR_START_ASSET = 546776;
