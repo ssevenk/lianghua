@@ -1,5 +1,6 @@
 
 import React, { useMemo } from 'react';
+import { BarChart3 } from 'lucide-react';
 import { CalculatedStock } from '../types';
 import { TableSkeleton } from './Skeletons';
 import { ValuationRow } from './ValuationRow';
@@ -23,21 +24,21 @@ const HEADER_CONFIG = [
 ];
 
 export const ValuationTable: React.FC<{ stocks: CalculatedStock[], loading: boolean }> = ({ stocks, loading }) => {
-  // 性能优化：记忆化昂贵的数组搜索与计算
   const stats = useMemo(() => {
     if (stocks.length === 0) return { maxV: -Infinity, benchmarkV: 0 };
-    
     const max = Math.max(...stocks.map(s => Number(s.v)));
     const benchmark = stocks.find(s => s.name === '沪深');
-    
-    return {
-      maxV: max,
-      benchmarkV: benchmark ? Number(benchmark.v) : 0
-    };
+    return { maxV: max, benchmarkV: benchmark ? Number(benchmark.v) : 0 };
   }, [stocks]);
 
   return (
     <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      {/* 模块内部标题栏 */}
+      <div className="px-4 sm:px-6 py-3 border-b border-slate-100 bg-slate-50/30 flex items-center gap-2">
+        <BarChart3 className="w-3.5 h-3.5 text-indigo-600" />
+        <h2 className="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-[0.2em]">个股模型估值</h2>
+      </div>
+
       {loading && stocks.length === 0 ? <TableSkeleton /> : (
         <div className="overflow-x-auto scrollbar-hide">
           <table className="w-full text-left text-xs sm:text-sm border-separate border-spacing-0 min-w-[1000px]">

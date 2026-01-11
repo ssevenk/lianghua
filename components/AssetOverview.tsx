@@ -1,6 +1,6 @@
 
 import React, { useMemo } from 'react';
-import { Users, Activity, ShieldCheck, Zap, CreditCard, Percent } from 'lucide-react';
+import { Users, Activity, ShieldCheck, Zap, CreditCard, Percent, LayoutDashboard } from 'lucide-react';
 import { GlobalState } from '../types';
 import { MiniStat } from './MiniStat';
 import { MI_INITIAL, MA_INITIAL } from '../constants';
@@ -23,6 +23,12 @@ export const AssetOverview: React.FC<{ globalState: GlobalState, lastUpdated: Da
 
   return (
     <div className="rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm overflow-hidden bg-white">
+      {/* 模块内部标题栏 */}
+      <div className="px-4 sm:px-6 py-3 border-b border-slate-100 bg-slate-50/30 flex items-center gap-2">
+        <LayoutDashboard className="w-3.5 h-3.5 text-indigo-600" />
+        <h2 className="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-[0.2em]">资产概况</h2>
+      </div>
+
       <div className="px-4 sm:px-6 py-4 sm:py-5 flex flex-wrap items-end gap-x-12 gap-y-4 border-b border-slate-100">
         <div className="space-y-1">
           <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] text-slate-400 block">总净资产 (CNY)</span>
