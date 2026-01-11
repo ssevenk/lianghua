@@ -1,4 +1,3 @@
-
 /**
  * 转换代码为腾讯 API 格式
  */
@@ -31,9 +30,12 @@ export async function fetchStockPrices(codes: string[]): Promise<Record<string, 
     const lines = text.split(';').filter(line => line.trim().length > 0);
     
     lines.forEach((line, index) => {
-      const match = line.match(/="([^"]+)"/);
-      if (match) {
-        const parts = match[1].split('~');
+      // 改用字符串分割替代正则表达式，避免正则解析问题
+      const dataPart = line.split('="')[1];
+      if (dataPart) {
+        const cleanData = dataPart.split('"')[0];
+        const parts = cleanData.split('~');
+        // 价格通常在第 3 个索引位（腾讯简版行情）
         const price = parseFloat(parts[3]);
         results[codes[index]] = (isNaN(price) || price === 0) ? 0 : price;
       }

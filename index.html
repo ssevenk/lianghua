@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -26,7 +25,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
-    <!-- Vite 构建入口脚本，依赖由 package.json 和 node_modules 管理 -->
-    <script type="module" src="/index.tsx"></script>
+    <!-- 使用相对路径引用入口文件，确保在各种托管环境下路径正确 -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

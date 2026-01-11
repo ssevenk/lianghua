@@ -68,9 +68,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload as TagAllocation;
     const isOver = data.departureAmountCNY > 0;
+    const absCNY = Math.abs(Math.floor(data.departureAmountCNY));
+    const absUSD = Math.abs(data.departureAmountUSD as number);
+    const absHKD = Math.abs(data.departureAmountHKD as number);
     
     return (
-      <div className="bg-white p-3 rounded-lg shadow-xl border border-slate-100 text-[11px] min-w-[200px]">
+      <div className="bg-white p-3 rounded-lg shadow-xl border border-slate-100 text-[11px] min-w-[220px]">
         <div className="flex items-center gap-1.5 mb-2 border-b pb-1">
           <div className={`w-1.5 h-1.5 rounded-full ${isOver ? 'bg-amber-500' : 'bg-emerald-500'}`}></div>
           <p className="font-black text-slate-900 text-sm">{label}</p>
@@ -104,14 +107,26 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           <div className="border-t border-slate-100 pt-2">
             <div className="flex items-center gap-1 mb-1">
               <ArrowRightLeft className="w-2.5 h-2.5 text-slate-400" />
-              <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">需{isOver ? '减仓' : '补仓'}</span>
+              <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">需{isOver ? '减仓' : '补仓'}金额</span>
             </div>
             
-            <div className="space-y-0.5">
-              <div className="flex justify-between items-baseline font-mono">
+            <div className="space-y-1">
+              <div className="flex justify-between items-baseline font-mono bg-slate-50/50 px-1.5 py-0.5 rounded">
                 <span className="text-[8px] font-bold text-slate-400">CNY</span>
                 <span className={`text-xs font-black ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>
-                  ¥{Math.abs(Math.floor(data.departureAmountCNY)).toLocaleString()}
+                  ¥{absCNY.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5">
+                <span className="text-[8px] font-bold text-slate-400">USD</span>
+                <span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>
+                  ${absUSD.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                </span>
+              </div>
+              <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5">
+                <span className="text-[8px] font-bold text-slate-400">HKD</span>
+                <span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>
+                  ${absHKD.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                 </span>
               </div>
             </div>
