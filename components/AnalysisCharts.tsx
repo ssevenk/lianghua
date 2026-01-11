@@ -68,7 +68,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload as TagAllocation;
     const isOver = data.departureAmountCNY > 0;
-    const absCNY = Math.abs(Math.floor(data.departureAmountCNY));
+    const absCNY = Math.abs(data.departureAmountCNY);
     const absUSD = Math.abs(data.departureAmountUSD as number);
     const absHKD = Math.abs(data.departureAmountHKD as number);
     
@@ -83,11 +83,11 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           <div className="grid grid-cols-2 gap-1.5 bg-slate-50 p-1.5 rounded-md">
             <div>
               <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">目标</p>
-              <p className="font-bold text-slate-700">{(data.targetRatio as number).toFixed(1)}%</p>
+              <p className="font-bold text-slate-700">{(data.targetRatio as number).toFixed(2)}%</p>
             </div>
             <div>
               <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">实际</p>
-              <p className="font-bold text-slate-900">{(data.realRatio as number).toFixed(1)}%</p>
+              <p className="font-bold text-slate-900">{(data.realRatio as number).toFixed(2)}%</p>
             </div>
           </div>
 
@@ -100,7 +100,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
                   ? 'text-amber-500' 
                   : 'text-indigo-600'
             }`}>
-              {(data.departureRatio as number > 0 ? '+' : '')}{(data.departureRatio as number).toFixed(1)}%
+              {(data.departureRatio as number > 0 ? '+' : '')}{(data.departureRatio as number).toFixed(2)}%
             </span>
           </div>
 
@@ -114,19 +114,19 @@ const CustomTooltip = ({ active, payload, label }: any) => {
               <div className="flex justify-between items-baseline font-mono bg-slate-50/50 px-1.5 py-0.5 rounded">
                 <span className="text-[8px] font-bold text-slate-400">CNY</span>
                 <span className={`text-xs font-black ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>
-                  ¥{absCNY.toLocaleString()}
+                  ¥{absCNY.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
               </div>
               <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5">
                 <span className="text-[8px] font-bold text-slate-400">USD</span>
                 <span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>
-                  ${absUSD.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                  ${absUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
               </div>
               <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5">
                 <span className="text-[8px] font-bold text-slate-400">HKD</span>
                 <span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>
-                  ${absHKD.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                  ${absHKD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
               </div>
             </div>
@@ -147,11 +147,11 @@ const PieTooltip = ({ active, payload }: any) => {
         <div className="space-y-1">
           <div className="flex justify-between gap-3">
             <span className="text-slate-500">金额</span>
-            <span className="font-bold text-slate-900">¥{Math.floor(data.value).toLocaleString()}</span>
+            <span className="font-bold text-slate-900">¥{data.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           </div>
           <div className="flex justify-between gap-3">
             <span className="text-slate-500">占比</span>
-            <span className="font-black text-indigo-600">{data.ratio.toFixed(1)}%</span>
+            <span className="font-black text-indigo-600">{data.ratio.toFixed(2)}%</span>
           </div>
         </div>
       </div>
@@ -192,7 +192,7 @@ export const AnalysisCharts: React.FC<{ allocations: TagAllocation[], pieData: P
                     dataKey="departureRatio" 
                     position="top" 
                     offset={10}
-                    formatter={(val: number) => `${val > 0 ? '+' : ''}${val.toFixed(1)}%`}
+                    formatter={(val: number) => `${val > 0 ? '+' : ''}${val.toFixed(2)}%`}
                     className="text-[10px] sm:text-[11px] font-black fill-slate-500"
                   />
                   {allocations.map((entry, index) => {
@@ -245,7 +245,7 @@ export const AnalysisCharts: React.FC<{ allocations: TagAllocation[], pieData: P
                   <span className="text-[10px] font-bold text-slate-700 truncate">{item.name}</span>
                 </div>
                 <div className="text-[10px] font-black text-slate-900 tabular-nums shrink-0">
-                  {item.ratio.toFixed(1)}%
+                  {item.ratio.toFixed(2)}%
                 </div>
               </div>
             ))}
