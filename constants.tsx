@@ -34,10 +34,10 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
   { tag: '中港', num: 0, name: '期权预买' },
-  { tag: '现金', num: 71446, name: '人民币' },
+  { tag: '现金', num: 169989, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
-  { tag: '现金', num: 121425 + 18467, name: '港币', exchange: 'hk' },
-  { tag: '现金', num: 12872 + 3.92 + 100.37 * 175 + 65.41 * 7.6144, name: '美元', exchange: 'us' },
+  { tag: '现金', num: 92269, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 4942 + 3.92 + 100.37 * 175 + 65.41 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'USIBIT', tag: '比特', name: '比特', num: 174, exchange: 'us' },
   { code: 'SH511520', tag: '中债', num: 1300, danbao: true },
   { code: 'USIEF', tag: '美债', num: 219, exchange: 'us' },
