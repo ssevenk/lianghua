@@ -25,16 +25,16 @@ export const TAG_RATIO_MAP: Record<string, number> = {
   '中债': 5,
   '美债': 5,
   '有色': 5,
-  '中港': 45,
+  '中港': 55,
   '美股': 15,
-  '现金': 10,
+  '现金': 0,
   '比特': 0
 };
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
   { tag: '中港', num: 0, name: '期权预买' },
-  { tag: '现金', num: 169989 + 70000, name: '人民币' },
+  { tag: '现金', num: 7650, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
   { tag: '现金', num: 92269, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 4942 + 3.92 + 100.37 * 175 + 65.41 * 7.6144, name: '美元', exchange: 'us' },
@@ -55,7 +55,7 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '有色', num: 4700, code: 'SH601899', danbao: true },
   { tag: '中港', num: 0, name: 'a50', code: 'SH510050' },
   { tag: '中港', code: 'SZ002352', num: 0, name: '顺丰' },
-  { tag: '中港', code: 'HK09992', num: 2400, name: '泡泡玛特', exchange: 'hk' }
+  { tag: '中港', code: 'HK09992', num: 3800, name: '泡泡玛特', exchange: 'hk' }
 ];
 
 export const RAW_STOCKS: Record<string, StockConfig> = {
