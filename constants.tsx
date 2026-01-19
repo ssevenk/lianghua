@@ -34,15 +34,15 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
   { tag: '中港', num: 0, name: '期权预买' },
-  { tag: '现金', num: 4650 + 6760, name: '人民币' },
+  { tag: '现金', num: 30 + 4650 + 6760, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
-  { tag: '现金', num: 92269, name: '港币', exchange: 'hk' },
-  { tag: '现金', num: 4942 + 3.92 + 100.37 * 175 + 65.41 * 7.6144, name: '美元', exchange: 'us' },
+  { tag: '现金', num: 22293, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 348 + 3.92 + 100.37 * 175 + 65.41 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'USIBIT', tag: '比特', name: '比特', num: 174, exchange: 'us' },
   { code: 'SH511520', tag: '中债', num: 1300, danbao: true },
   { code: 'USIEF', tag: '美债', num: 219, exchange: 'us' },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
-  { code: 'SH600938', tag: '石油', num: 300, danbao: true },
+  { code: 'SH600938', tag: '石油', num: 400, danbao: true },
   { code: 'SZ000568', tag: '中港', num: 0, name: '老窖' },
   { code: 'SH518880', tag: '黄金', num: 21600, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 100, name: '汾酒', danbao: true },
@@ -55,7 +55,7 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '有色', num: 4700, code: 'SH601899', danbao: true },
   { tag: '中港', num: 0, name: 'a50', code: 'SH510050' },
   { tag: '中港', code: 'SZ002352', num: 0, name: '顺丰' },
-  { tag: '中港', code: 'HK09992', num: 3800, name: '泡泡玛特', exchange: 'hk' }
+  { tag: '中港', code: 'HK09992', num: 4400, name: '泡泡玛特', exchange: 'hk' }
 ];
 
 export const RAW_STOCKS: Record<string, StockConfig> = {
