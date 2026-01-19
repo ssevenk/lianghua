@@ -14,6 +14,9 @@ const COLORS = [
   '#a855f7', '#f59e0b', '#10b981', '#64748b'
 ];
 
+const RED_THRESHOLD = 15;
+const YELLOW_THRESHOLD = 13;
+
 const CustomXAxisTick = (props: any) => {
   const { x, y, payload, index, data } = props;
   // 防御性检查：确保 data 存在且索引有效
@@ -28,9 +31,9 @@ const CustomXAxisTick = (props: any) => {
   
   const dev = Math.abs(entry.departureRatio as number || 0);
   let fill = '#64748b';
-  if (dev > 15) fill = '#f43f5e'; 
-  else if (dev > 10) fill = '#facc15'; 
-  
+  if (dev > RED_THRESHOLD) fill = '#f43f5e'; 
+  else if (dev > YELLOW_THRESHOLD) fill = '#facc15'; 
+
   return (
     <g transform={`translate(${x},${y})`}>
       <text x={0} y={0} dy={16} textAnchor="middle" fill={fill} className="text-[12px] sm:text-[14px] font-black tracking-tight">{payload.value}</text>
@@ -69,7 +72,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           </div>
           <div className="flex justify-between items-center px-0.5">
             <span className="text-slate-500 font-medium">相对偏差率</span>
-            <span className={`font-black text-xs ${Math.abs(data.departureRatio as number || 0) > 15 ? 'text-rose-600' : Math.abs(data.departureRatio as number || 0) > 10 ? 'text-amber-500' : 'text-indigo-600'}`}>
+            <span className={`font-black text-xs ${Math.abs(data.departureRatio as number || 0) > RED_THRESHOLD ? 'text-rose-600' : Math.abs(data.departureRatio as number || 0) > YELLOW_THRESHOLD ? 'text-amber-500' : 'text-indigo-600'}`}>
               {(data.departureRatio as number || 0 > 0 ? '+' : '')}{(data.departureRatio as number || 0).toFixed(2)}%
             </span>
           </div>
@@ -133,8 +136,8 @@ export const AnalysisCharts: React.FC<{ allocations: TagAllocation[], pieData: P
                     {allocations.map((entry, index) => {
                       const dev = Math.abs(entry.departureRatio as number || 0);
                       let fill = '#6366f1';
-                      if (dev > 15) fill = '#f43f5e';
-                      else if (dev > 10) fill = '#facc15';
+                      if (dev > RED_THRESHOLD) fill = '#f43f5e';
+                      else if (dev > YELLOW_THRESHOLD) fill = '#facc15';
                       return <Cell key={`cell-${index}`} fill={fill} />;
                     })}
                   </Bar>

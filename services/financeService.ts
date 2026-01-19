@@ -66,13 +66,13 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   preprocessStock(stock);
   const g = stock.g || 0;
   const roic = stock.roic || 0;
-  const cashP = stock.cashP || 1;
-  const zhejia = stock.折价 || 1;
-  const historicalPe = stock.历史估值 || 15;
-  const dynamicYield = stock.动态收益 || 1;
+  const cashP = stock.cashP || 0;
+  const zhejia = stock.折价 || 0;
+  const historicalPe = stock.历史估值 || 0;
+  const dynamicYield = stock.动态收益 || 0;
   const bonusRate = stock.分红率 || 0;
   const buybackRate = stock.回购率 || 0;
-  const equityZhejia = stock.股权折价 || 1;
+  const equityZhejia = stock.股权折价 || 0;
   const extraValue = stock.额外价值 || 0;
 
   // 1. ROIC 估值分量 (上限 30)
