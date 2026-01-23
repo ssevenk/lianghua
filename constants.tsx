@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 0;
+export const ALL_DEBT = 268429;
 export const MI_RATIO = 0.088190268;
 export const MA_RATIO = 0.193524777;
 
@@ -47,6 +47,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH518880', tag: '黄金', num: 21600, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 100, name: '汾酒', danbao: true },
   { code: 'SH600519', tag: '中港', num: 600, name: '茅台', danbao: true },
+  { code: 'SH600519', tag: '中港', num: 200, name: '茅台融', danbao: true },
   { code: 'HK00388', tag: '中港', num: 0, name: '港交', exchange: 'hk' },
   { code: 'SH600660', tag: '中港', num: 0, name: '福耀', danbao: true },
   { code: 'SH600900', tag: '中港', num: 0, name: '长电', danbao: true },
