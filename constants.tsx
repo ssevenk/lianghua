@@ -22,8 +22,8 @@ export const MA_YEAR_START_ASSET = 546776;
 export const TAG_RATIO_MAP: Record<string, number> = {
   '黄金': 10,
   '石油': 5,
-  '中债': 5,
-  '美债': 5,
+  '中债': 10,
+  '美债': 0,
   '有色': 5,
   '中港': 60,
   '美股': 10,
