@@ -193,8 +193,8 @@ export async function fetchDashboardData(): Promise<{
   const nowTotalTotal = Object.values(tagTotals).reduce((acc, curr) => acc + curr, 0);
   const allClean = nowTotalTotal - ALL_DEBT;
   const maxDebt = allDanBao * 0.25;
-  const availableDebt = Math.max(0, maxDebt - ALL_DEBT);
-  const allTotal = allClean + maxDebt;
+  const availableDebt = maxDebt - ALL_DEBT
+  const allTotal = allClean + Math.max(maxDebt, ALL_DEBT)
 
   // 完成饼图数据构建
   Object.entries(otherTagTotals).forEach(([tag, val]) => {
@@ -222,8 +222,8 @@ export async function fetchDashboardData(): Promise<{
     allDanBao,
     allTotal,
     debt: ALL_DEBT,
-    debtRatio: debtRatio,
-    availableDebt: availableDebt,
+    debtRatio,
+    availableDebt,
     yield: yieldPct,
     miAsset,
     maAsset,
