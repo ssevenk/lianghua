@@ -22,13 +22,11 @@ export const MA_YEAR_START_ASSET = 546776;
 export const TAG_RATIO_MAP: Record<string, number> = {
   '黄金': 10,
   '石油': 5,
-  '中债': 5,
-  '美债': 5,
+  '债券': 10,
   '有色': 5,
   '中港': 50,
   '美股': 10,
-  '现金': 10,
-  '比特': 0
+  '现金': 10
 };
 
 export const RAW_PROPERTIES: Property[] = [
@@ -38,9 +36,9 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
   { tag: '现金', num: 24165, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 12.48 + 4.51 + 10.65 + 100.66 * 175 + 74.4 * 7.6144, name: '美元', exchange: 'us' },
-  { code: 'USIBIT', tag: '比特', name: '比特', num: 174, exchange: 'us' },
-  { code: 'SH511520', tag: '中债', num: 1300, danbao: true },
-  { code: 'USIEF', tag: '美债', num: 219, exchange: 'us' },
+  { code: 'USIBIT', tag: '现金', name: '比特', num: 174, exchange: 'us' },
+  { code: 'SH511520', tag: '债券', name: '中债', num: 1300, danbao: true },
+  { code: 'USIEF', tag: '债券', name: '美债', num: 219, exchange: 'us' },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
   { code: 'SH600938', tag: '石油', num: 300, danbao: true },
   { code: 'SH600938', tag: '石油咪', num: 100 },
