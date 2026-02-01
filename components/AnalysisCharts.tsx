@@ -75,7 +75,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           
           <div className="flex justify-between items-center px-0.5 pt-1">
             <span className="text-slate-500 font-medium">当前总额</span>
-            <span className="font-black text-slate-900 text-xs">¥{currentTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            <span className="font-black text-slate-900 text-xs">¥{currentTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false })}</span>
           </div>
 
           <div className="flex justify-between items-center px-0.5 border-b border-slate-50 pb-1">
@@ -88,9 +88,9 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           <div className="pt-1">
             <div className="flex items-center gap-1 mb-1"><ArrowRightLeft className="w-2.5 h-2.5 text-slate-400" /><span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">需{isOver ? '减仓' : '补仓'}金额</span></div>
             <div className="space-y-1">
-              <div className="flex justify-between items-baseline font-mono bg-slate-50/50 px-1.5 py-0.5 rounded"><span className="text-[8px] font-bold text-slate-400">CNY</span><span className={`text-xs font-black ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>¥{absCNY.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></div>
-              <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5"><span className="text-[8px] font-bold text-slate-400">USD</span><span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>${absUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></div>
-              <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5"><span className="text-[8px] font-bold text-slate-400">HKD</span><span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>${absHKD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></div>
+              <div className="flex justify-between items-baseline font-mono bg-slate-50/50 px-1.5 py-0.5 rounded"><span className="text-[8px] font-bold text-slate-400">CNY</span><span className={`text-xs font-black ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>¥{absCNY.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false })}</span></div>
+              <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5"><span className="text-[8px] font-bold text-slate-400">USD</span><span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>${absUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false })}</span></div>
+              <div className="flex justify-between items-baseline font-mono px-1.5 py-0.5"><span className="text-[8px] font-bold text-slate-400">HKD</span><span className={`text-[10px] font-black ${isOver ? 'text-amber-600/80' : 'text-emerald-600/80'}`}>${absHKD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false })}</span></div>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ const PieTooltip = ({ active, payload }: any) => {
       <div className="bg-white p-2.5 rounded-lg shadow-lg border border-slate-100 text-[11px] min-w-[140px]">
         <p className="font-bold text-slate-900 mb-1 border-b pb-0.5">{data.name}</p>
         <div className="space-y-1">
-          <div className="flex justify-between gap-3"><span className="text-slate-500">金额</span><span className="font-bold text-slate-900">¥{(data.value || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></div>
+          <div className="flex justify-between gap-3"><span className="text-slate-500">金额</span><span className="font-bold text-slate-900">¥{(data.value || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false })}</span></div>
           <div className="flex justify-between gap-3"><span className="text-slate-500">占比</span><span className="font-black text-indigo-600">{(data.ratio || 0).toFixed(2)}%</span></div>
         </div>
       </div>

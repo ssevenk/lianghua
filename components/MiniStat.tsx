@@ -29,7 +29,7 @@ const MiniStatComponent: React.FC<MiniStatProps> = ({ title, value, icon, highli
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
           <div className={`${large ? 'text-base sm:text-xl' : 'text-sm sm:text-base'} font-black tabular-nums tracking-tight whitespace-nowrap ${highlight ? 'text-indigo-900' : 'text-slate-800'}`}>
             {!isRatio && <span className={`${large ? 'text-[9px] sm:text-xs' : 'text-[8px] sm:text-[9px]'} font-bold mr-0.5 opacity-40`}>¥</span>}
-            {value !== undefined && !isNaN(value) ? Math.floor(value).toLocaleString() : '---'}
+            {value !== undefined && !isNaN(value) ? Math.floor(value).toString() : '---'}
           </div>
           {subInfo && (
             <div className={`${large ? 'text-[9px] sm:text-xs' : 'text-[7px] sm:text-[8px]'} font-bold tabular-nums truncate opacity-90 ${color === 'pink' ? 'text-pink-600' : color === 'amber' ? 'text-amber-600' : 'text-slate-500'}`}>

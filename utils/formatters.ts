@@ -6,7 +6,8 @@ export const formatCurrency = (val: number | undefined | null, decimals: number 
   if (val === undefined || val === null || isNaN(val)) return '0';
   return val.toLocaleString(undefined, { 
     minimumFractionDigits: decimals, 
-    maximumFractionDigits: decimals 
+    maximumFractionDigits: decimals,
+    useGrouping: false
   });
 };
 
@@ -19,6 +20,7 @@ export const formatPercent = (val: string | number | undefined | null, decimals:
 
 export const formatPrice = (val: number | undefined | null): string => {
   if (val === undefined || val === null || isNaN(val)) return '¥0.00';
+  // toFixed 默认不带千位分隔符
   return `¥${val.toFixed(2)}`;
 };
 

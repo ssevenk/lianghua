@@ -61,6 +61,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({ globalState, stocks, allocatio
       })),
       allocationAnalysis: allocations.map(a => ({
         category: a.tag,
+        currentAmountCNY: Math.floor(a.currentTotal),
         targetRatio: a.targetRatio + '%',
         actualRatio: a.realRatio.toFixed(2) + '%',
         departureRatio: (a.departureRatio as number).toFixed(2) + '%',
