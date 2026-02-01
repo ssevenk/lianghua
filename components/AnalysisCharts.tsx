@@ -59,6 +59,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     const absCNY = Math.abs(data.departureAmountCNY || 0);
     const absUSD = Math.abs(data.departureAmountUSD as number || 0);
     const absHKD = Math.abs(data.departureAmountHKD as number || 0);
+    const currentTotal = data.currentTotal || 0;
+
     return (
       <div className="bg-white p-3 rounded-lg shadow-xl border border-slate-100 text-[11px] min-w-[220px]">
         <div className="flex items-center gap-1.5 mb-2 border-b pb-1">
@@ -70,13 +72,20 @@ const CustomTooltip = ({ active, payload, label }: any) => {
             <div><p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">目标</p><p className="font-bold text-slate-700">{(data.targetRatio as number || 0).toFixed(2)}%</p></div>
             <div><p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">实际</p><p className="font-bold text-slate-900">{(data.realRatio as number || 0).toFixed(2)}%</p></div>
           </div>
-          <div className="flex justify-between items-center px-0.5">
+          
+          <div className="flex justify-between items-center px-0.5 pt-1">
+            <span className="text-slate-500 font-medium">当前总额</span>
+            <span className="font-black text-slate-900 text-xs">¥{currentTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          </div>
+
+          <div className="flex justify-between items-center px-0.5 border-b border-slate-50 pb-1">
             <span className="text-slate-500 font-medium">相对偏差率</span>
             <span className={`font-black text-xs ${Math.abs(data.departureRatio as number || 0) > RED_THRESHOLD ? 'text-rose-600' : Math.abs(data.departureRatio as number || 0) > YELLOW_THRESHOLD ? 'text-amber-500' : 'text-indigo-600'}`}>
               {(data.departureRatio as number || 0 > 0 ? '+' : '')}{(data.departureRatio as number || 0).toFixed(2)}%
             </span>
           </div>
-          <div className="border-t border-slate-100 pt-2">
+
+          <div className="pt-1">
             <div className="flex items-center gap-1 mb-1"><ArrowRightLeft className="w-2.5 h-2.5 text-slate-400" /><span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">需{isOver ? '减仓' : '补仓'}金额</span></div>
             <div className="space-y-1">
               <div className="flex justify-between items-baseline font-mono bg-slate-50/50 px-1.5 py-0.5 rounded"><span className="text-[8px] font-bold text-slate-400">CNY</span><span className={`text-xs font-black ${isOver ? 'text-amber-600' : 'text-emerald-600'}`}>¥{absCNY.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></div>
