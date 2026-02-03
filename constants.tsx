@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 389844;
+export const ALL_DEBT = 271883;
 export const MI_RATIO = 0.088190268;
 export const MA_RATIO = 0.193524777;
 
@@ -32,7 +32,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
   { tag: '中港', num: 0, name: '期权预买' },
-  { tag: '现金', num: 273690, name: '人民币' },
+  { tag: '现金', num: 160500, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
   { tag: '现金', num: 24165, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 12.48 + 4.51 + 10.65 + 100.66 * 175 + 74.4 * 7.6144, name: '美元', exchange: 'us' },
@@ -45,8 +45,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SZ000568', tag: '中港', num: 0, name: '老窖' },
   { code: 'SH518880', tag: '黄金', num: 21600, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 100, name: '汾酒', danbao: true },
-  { code: 'SH600519', tag: '中港', num: 600, name: '茅台', danbao: true },
-  { code: 'SH600519', tag: '中港', num: 300, name: '茅台融' },
+  { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
   { code: 'HK00388', tag: '中港', num: 0, name: '港交', exchange: 'hk' },
   { code: 'SH600660', tag: '中港', num: 0, name: '福耀', danbao: true },
   { code: 'SH600900', tag: '中港', num: 0, name: '长电', danbao: true },

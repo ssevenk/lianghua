@@ -161,7 +161,7 @@ export async function fetchDashboardData(): Promise<{
   const tagTotals: Record<string, number> = {};
   const tempPieItems: PieItem[] = [];
   const otherTagTotals: Record<string, number> = {};
-  let allDanBao = 0;
+  let allDanBao = -ALL_DEBT;
 
   RAW_PROPERTIES.forEach((p) => {
     let price = p.code ? (priceMap[p.code] || 0) : 1;
