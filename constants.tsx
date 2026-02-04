@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 329516;
+export const ALL_DEBT = 240768;
 export const MI_RATIO = 0.088190268;
 export const MA_RATIO = 0.193524777;
 
@@ -34,8 +34,8 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '中港', num: 0, name: '期权预买' },
   { tag: '现金', num: 160500, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
-  { tag: '现金', num: 24165, name: '港币', exchange: 'hk' },
-  { tag: '现金', num: 12.48 + 4.51 + 10.65 + 100.66 * 175 + 74.4 * 7.6144, name: '美元', exchange: 'us' },
+  { tag: '现金', num: 61543, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 23.2 + 10.42 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'USIBIT', tag: '现金', name: '比特', num: 174, exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 1800, danbao: true },
   { code: 'USIEF', tag: '债券', name: '美债', num: 219, exchange: 'us' },
@@ -65,8 +65,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     roic表: [20, 21.8, 17.5, 10.5, 15.9],
     利润表: [1598, 2248, 1882, 1152, 1941],
     历史估值: 30.69,
-    动态收益: 26.68,
-    增速: [14.3, 14.5, 12.7],
+    动态收益: 26.79,
+    增速: [14.2, 14.3, 12.3],
     分红率: 17.72,
     回购率: 35.4,
     股权折价: 0.79,
@@ -110,8 +110,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     roic表: [8.19, 9.4, 12, 12.2, 14.3],
     利润表: [26, 31.5, 47.6, 56.3, 75],
     历史估值: 19.61,
-    动态收益: 3.7,
-    增速: [28.7, 14.6, 15.5],
+    动态收益: 3.72,
+    增速: [29.4, 13.7, 15.2],
     分红率: 58.21,
     回购率: 0,
     股权折价: 1,
@@ -185,8 +185,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     roic表: [10.2, 3.95, 5.04, 5.51, 7.02],
     利润表: [73.3, 42.7, 61.7, 82.3, 102],
     历史估值: 36.13,
-    动态收益: 2.17,
-    增速: [7.58, 16.2, 14],
+    动态收益: 2.13,
+    增速: [5.74, 14.1, 12.9],
     分红率: 35,
     回购率: 14.4,
     股权折价: 1,
