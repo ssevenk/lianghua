@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 240768;
+export const ALL_DEBT = 157353;
 export const MI_RATIO = 0.088190268;
 export const MA_RATIO = 0.193524777;
 
@@ -32,7 +32,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
   { tag: '中港', num: 0, name: '期权预买' },
-  { tag: '现金', num: 160500, name: '人民币' },
+  { tag: '现金', num: 77058, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
   { tag: '现金', num: 61543, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 23.2 + 10.42 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
