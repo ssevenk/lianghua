@@ -52,7 +52,7 @@ export const preprocessStock = (stock: StockConfig) => {
 
   // 3年后的增速，取未来3年均值的70%
   if (stock.增速 && stock.增速.length === 3) {
-    const g = 0.7 * stock.增速.reduce((prev, next) => prev + next, 0)
+    const g = 0.7 * (stock.增速.reduce((prev, next) => prev + next, 0) / 3)
     for (let i = 1; i <= 7; i += 1) {
       stock.增速.push(g)
     }
@@ -81,7 +81,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const historyPe = Math.min(30, historicalPe * zhejia);
 
   // 3. 增速计算pe
-  const growthList = stock.增速 || [0, 0, 0];
+  const growthList = stock.增速 || [0, 0, 0]
   const y2 = 1 + (growthList[1] || 0) / 100;
   const y3 = y2 * (1 + (growthList[2] || 0) / 100);
   const y4 = y3 * (1 + (growthList[3] || 0) / 100);
