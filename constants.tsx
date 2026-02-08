@@ -48,6 +48,9 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '中港', code: 'HK09992', num: 3000, name: '泡泡玛特', exchange: 'hk' }
 ];
 
+// 沪深300增速，用来作为增速计算的封顶（不超2倍），以及作为爆发期但长期增长不确定的公司永续增长的数值
+export const HUSHEN_G = 5.17
+
 export const RAW_STOCKS: Record<string, StockConfig> = {
   腾讯: {
     code: 'HK00700',
@@ -190,7 +193,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     roic表: [14.6, 15.1, 15.1, 12.7, 11.2],
     历史估值: 12.4,
     动态收益: ((4.919 / 14.6) * 4 * (1 + 0.0687)) / (3 * (1 + 0.0687) + 1),
-    增速: [5.17, 5.17, 5.17],
+    增速: [HUSHEN_G, HUSHEN_G, HUSHEN_G],
     分红率: 36.9,
     回购率: 2.3 / 2,
     股权折价: 1,
@@ -205,13 +208,13 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     利润表: [5.24, 8.54, 4.76, 10.8, 31.3],
     历史估值: 48.52,
     动态收益: 10.46,
-    // 对处在爆发成长期，但长期增长不确定（可能下滑）的公司，将3年后的增速设为0
-    增速: [304, 35.5, 23.9, 0, 0, 0, 0, 0, 0, 0],
+    增速: [304, 35.5, 23.9],
     分红率: 34.45,
     回购率: 33.7 / 2,
     股权折价: 0.79,
     额外价值: 0,
-    周期: 0.5
+    周期: 0.5,
+    爆发成长: true
   },
   SPYM: {
     code: 'USSPYM',

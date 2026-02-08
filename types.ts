@@ -18,6 +18,7 @@ export interface StockConfig {
   roic?: number;
   cashP?: number;
   g?: number;
+  爆发成长?: boolean;
 }
 
 export interface Property {
