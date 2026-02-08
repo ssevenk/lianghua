@@ -50,9 +50,9 @@ export const preprocessStock = (stock: StockConfig) => {
     stock.cashP = 1;
   }
 
-  // 3年后的增速，取未来3年均值的70%
+  // 3年后的增速，取未来3年均值的70%, 封顶10%
   if (stock.增速 && stock.增速.length === 3) {
-    const g = 0.7 * (stock.增速.reduce((prev, next) => prev + next, 0) / 3)
+    const g = Math.min((0.7 * stock.增速.reduce((prev, next) => prev + next, 0)) / 300, 10);
     for (let i = 1; i <= 7; i += 1) {
       stock.增速.push(g)
     }
