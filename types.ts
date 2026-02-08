@@ -41,7 +41,6 @@ export interface CalculatedStock extends StockConfig {
   zhenshiPe: number;
   normalPe: number;
   normalPb?: number;
-  g: number;
   roic: number;
   cashP: number;
 }

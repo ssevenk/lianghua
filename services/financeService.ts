@@ -50,12 +50,12 @@ export const preprocessStock = (stock: StockConfig) => {
     stock.cashP = 1;
   }
 
-  // 3年后的增速，取未来3年均值的70%乘以折价
-  if (stock.增速 && stock.增速.length > 0) {
-    stock.g =
-      stock.折价 * Math.min((0.7 * stock.增速.reduce((prev, next) => prev + next, 0)) / 300, 0.1);
-  } else {
-    stock.g = 0;
+  // 3年后的增速，取未来3年均值的70%
+  if (stock.增速 && stock.增速.length === 3) {
+    const g = 0.7 * stock.增速.reduce((prev, next) => prev + next, 0)
+    for (let i = 1; i <= 7; i += 1) {
+      stock.增速.push(g)
+    }
   }
 };
 
@@ -64,7 +64,6 @@ export const preprocessStock = (stock: StockConfig) => {
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
   preprocessStock(stock);
-  const g = stock.g || 0;
   const roic = stock.roic || 0;
   const cashP = stock.cashP || 0;
   const zhejia = stock.折价 || 0;
@@ -82,17 +81,16 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const historyPe = Math.min(30, historicalPe * zhejia);
 
   // 3. 增速计算pe
-  const g1 = 1 + g;
   const growthList = stock.增速 || [0, 0, 0];
   const y2 = 1 + (growthList[1] || 0) / 100;
   const y3 = y2 * (1 + (growthList[2] || 0) / 100);
-  const y4 = y3 * g1;
-  const y5 = y4 * g1;
-  const y6 = y5 * g1;
-  const y7 = y6 * g1;
-  const y8 = y7 * g1;
-  const y9 = y8 * g1;
-  const y10 = y9 * g1;
+  const y4 = y3 * (1 + (growthList[3] || 0) / 100);
+  const y5 = y4 * (1 + (growthList[4] || 0) / 100);
+  const y6 = y5 * (1 + (growthList[5] || 0) / 100);
+  const y7 = y6 * (1 + (growthList[6] || 0) / 100);
+  const y8 = y7 * (1 + (growthList[7] || 0) / 100);
+  const y9 = y8 * (1 + (growthList[8] || 0) / 100);
+  const y10 = y9 * (1 + (growthList[9] || 0) / 100);
 
   const growPe = Math.min(
     30,
@@ -113,13 +111,13 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const y1 = 100 / zPe;
     const dy2 = (y1 * (1 + (growthList[1] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy3 = (dy2 * (1 + (growthList[2] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy4 = (dy3 * (1 + g)) / (1 + ZHE_XIAN);
-    const dy5 = (dy4 * (1 + g)) / (1 + ZHE_XIAN);
-    const dy6 = (dy5 * (1 + g)) / (1 + ZHE_XIAN);
-    const dy7 = (dy6 * (1 + g)) / (1 + ZHE_XIAN);
-    const dy8 = (dy7 * (1 + g)) / (1 + ZHE_XIAN);
-    const dy9 = (dy8 * (1 + g)) / (1 + ZHE_XIAN);
-    const dy10 = (dy9 * (1 + g)) / (1 + ZHE_XIAN);
+    const dy4 = (dy3 * (1 + (growthList[3] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy5 = (dy4 * (1 + (growthList[4] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy6 = (dy5 * (1 + (growthList[5] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy7 = (dy6 * (1 + (growthList[6] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy8 = (dy7 * (1 + (growthList[7] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy9 = (dy8 * (1 + (growthList[8] || 0) / 100)) / (1 + ZHE_XIAN);
+    const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
     return (
       (zhejia *
         (bonusRate * equityZhejia + buybackRate) *
@@ -137,7 +135,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const p3 = price * 0.95;
   const v3 = (calculatePev(p3) + calculatePbv(p3) + extraValue).toFixed(2);
 
-  return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe, g, roic, cashP };
+  return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe, roic, cashP };
 };
 
 /**
