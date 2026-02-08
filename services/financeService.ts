@@ -55,8 +55,8 @@ export const preprocessStock = (stock: StockConfig) => {
   if (stock.增速 && stock.增速.length === 3) {
     let g = Math.min((0.7 * stock.增速.reduce((prev, next) => prev + next, 0)) / 3, HUSHEN_G * 1.5);
     if (stock.爆发成长) {
-      // 对处在爆发成长期，但长期增长不确定的公司，3年后的增速设为沪深300
-      g = HUSHEN_G
+      // 对处在爆发成长期，但长期增长不确定的公司，3年后的增速与沪深300一样(0.7倍基准)
+      g = HUSHEN_G * 0.7
     }
     for (let i = 1; i <= 7; i += 1) {
       stock.增速.push(g)
