@@ -101,7 +101,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
-    return 100 * normalPe / (zPe || 1) - 1
+    return 100 * (normalPe / (zPe || 1) - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
