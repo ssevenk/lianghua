@@ -101,7 +101,8 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
-    return 100 * (normalPe / (zPe || 1) - 1)
+    // 市盈率回归有不确定性，不能按百分百算。只能算大概率，即70%
+    return 70 * (normalPe / (zPe || 1) - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
