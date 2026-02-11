@@ -66,7 +66,6 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   preprocessStock(stock);
   const roic = stock.roic || 0;
   const cashP = stock.cashP || 0;
-  const zhejia = stock.折价 || 0;
   const historicalPe = stock.历史估值 || 0;
   const dynamicYield = stock.动态收益 || 0;
   const bonusRate = stock.分红率 || 0;
@@ -75,10 +74,10 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const extraValue = stock.额外价值 || 0;
 
   // 1. ROIC 估值分量 (上限 30)
-  const roicPe = Math.min(30, roic * cashP * zhejia);
+  const roicPe = Math.min(30, roic * cashP);
 
   // 2. 历史估值分量 (上限 30)
-  const historyPe = Math.min(30, historicalPe * zhejia);
+  const historyPe = Math.min(30, historicalPe);
 
   // 3. 增速计算pe
   const growthList = stock.增速 || [0, 0, 0]
@@ -94,11 +93,11 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const growPe = Math.min(
     30,
-    zhejia * 1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
+    1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
-  // 综合合理 PE
-  const normalPe = (historyPe + roicPe + growPe) / 3;
+  // 合理 PE，考虑企业折价（因此S级企业pe上限为30，A级为21）底层原理是稀有唯一的资产享受更高的pe
+  const normalPe = stock.折价 * (historyPe + roicPe + growPe) / 3;
   const zhenshiPe = price / (dynamicYield || 1);
 
   const calculatePev = (currPrice: number) => {
@@ -118,12 +117,9 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const dy8 = (dy7 * (1 + (growthList[7] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy9 = (dy8 * (1 + (growthList[8] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
-    return (
-      (zhejia *
-        (bonusRate * equityZhejia + buybackRate) *
-        (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10)) /
-      100
-    );
+    // pb计算不需要乘以折价，这个维度不关心企业受欢迎和稀缺度
+    return (bonusRate * equityZhejia + buybackRate) *
+        (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
   const v1Num = calculatePev(price) + calculatePbv(price) + extraValue;
