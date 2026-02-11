@@ -101,7 +101,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
-    return normalPe / (zPe || 1) - 1
+    return 100 * normalPe / (zPe || 1) - 1
   };
 
   const calculatePbv = (currPrice: number) => {
@@ -116,7 +116,6 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const dy8 = (dy7 * (1 + (growthList[7] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy9 = (dy8 * (1 + (growthList[8] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
-    // pb计算不需要乘以折价，这个维度不关心企业受欢迎和稀缺度
     return (bonusRate * equityZhejia + buybackRate) *
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
