@@ -93,7 +93,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const growPe = Math.min(
     30,
-    1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
+    (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
   const normalPe = (historyPe + roicPe + growPe) / 3;
@@ -101,7 +101,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
-    return 70 * (normalPe / (zPe || 1) - 1);
+    return normalPe / (zPe || 1) - 1
   };
 
   const calculatePbv = (currPrice: number) => {
