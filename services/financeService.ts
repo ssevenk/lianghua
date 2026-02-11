@@ -51,15 +51,10 @@ export const preprocessStock = (stock: StockConfig) => {
     stock.cashP = 1;
   }
 
-  // 3年后的增速，取未来3年均值的70%, 封顶 1.5 倍沪深 300 增速
-  if (stock.增速 && stock.增速.length === 3) {
-    let g = Math.min((0.7 * stock.增速.reduce((prev, next) => prev + next, 0)) / 3, HUSHEN_G * 1.5);
-    if (stock.爆发成长) {
-      // 对处在爆发成长期，但长期增长不确定的公司，3年后的增速与沪深300一样(0.7倍基准)
-      g = HUSHEN_G * 0.7
-    }
+  // 补充3年后的增速
+  if (stock.增速 && stock.未来增速 !== undefined && stock.增速.length === 3) {
     for (let i = 1; i <= 7; i += 1) {
-      stock.增速.push(g)
+      stock.增速.push(stock.未来增速)
     }
   }
 };
@@ -71,7 +66,6 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   preprocessStock(stock);
   const roic = stock.roic || 0;
   const cashP = stock.cashP || 0;
-  const zhejia = stock.折价 || 0;
   const historicalPe = stock.历史估值 || 0;
   const dynamicYield = stock.动态收益 || 0;
   const bonusRate = stock.分红率 || 0;
@@ -80,10 +74,10 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const extraValue = stock.额外价值 || 0;
 
   // 1. ROIC 估值分量 (上限 30)
-  const roicPe = Math.min(30, roic * cashP * zhejia);
+  const roicPe = Math.min(30, roic * cashP);
 
   // 2. 历史估值分量 (上限 30)
-  const historyPe = Math.min(30, historicalPe * zhejia);
+  const historyPe = Math.min(30, historicalPe);
 
   // 3. 增速计算pe
   const growthList = stock.增速 || [0, 0, 0]
@@ -99,7 +93,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const growPe = Math.min(
     30,
-    zhejia * 1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
+    1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
   // 综合合理 PE
@@ -123,12 +117,9 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const dy8 = (dy7 * (1 + (growthList[7] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy9 = (dy8 * (1 + (growthList[8] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
-    return (
-      (zhejia *
-        (bonusRate * equityZhejia + buybackRate) *
-        (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10)) /
+    return (bonusRate * equityZhejia + buybackRate) *
+        (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) /
       100
-    );
   };
 
   const v1Num = calculatePev(price) + calculatePbv(price) + extraValue;

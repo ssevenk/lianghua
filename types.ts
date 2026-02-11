@@ -1,13 +1,13 @@
 
 export interface StockConfig {
   code: string;
-  折价: number;
   现金?: number[];
   roic表?: number[];
   利润表?: number[];
   历史估值?: number;
   动态收益?: number;
   增速?: number[];
+  未来增速?: number;
   分红率?: number;
   回购率?: number;
   股权折价?: number;
@@ -17,8 +17,6 @@ export interface StockConfig {
   ifPrice?: number;
   roic?: number;
   cashP?: number;
-  g?: number;
-  爆发成长?: boolean;
 }
 
 export interface Property {
