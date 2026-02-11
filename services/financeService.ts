@@ -96,8 +96,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     1.2 * (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
-  // 合理 PE，考虑企业折价（因此S级企业pe上限为30，A级为21）底层原理是稀有唯一的资产享受更高的pe
-  const normalPe = stock.折价 * (historyPe + roicPe + growPe) / 3;
+  const normalPe = historyPe + roicPe + growPe / 3;
   const zhenshiPe = price / (dynamicYield || 1);
 
   const calculatePev = (currPrice: number) => {
@@ -119,7 +118,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
     // pb计算不需要乘以折价，这个维度不关心企业受欢迎和稀缺度
     return (bonusRate * equityZhejia + buybackRate) *
-        (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
+      (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
   const v1Num = calculatePev(price) + calculatePbv(price) + extraValue;
