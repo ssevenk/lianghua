@@ -12,7 +12,6 @@ export interface StockConfig {
   回购率?: number;
   股权折价?: number;
   额外价值?: number;
-  周期?: number;
   onlyPrice?: boolean;
   ifPrice?: number;
   roic?: number;
