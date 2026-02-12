@@ -96,7 +96,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
-  const normalPe = (historyPe + roicPe + growPe) / 3;
+  const normalPe = (historyPe + growPe) / 2;
   const zhenshiPe = price / (dynamicYield || 1);
 
   const calculatePev = (currPrice: number) => {
