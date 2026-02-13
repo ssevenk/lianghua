@@ -60,7 +60,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 30.69,
     动态收益: 26.84,
     增速: [14.2, 14.3, 12.3],
-    未来增速: HUSHEN_G,
+    未来增速: HUSHEN_G, 
+    // ai预测6%-9%，但AI给腾讯带来的更多是挑战和竞争者，以及额外的资本开支，因此调低一档
     分红率: 17.72,
     回购率: 35.4,
     股权折价: 0.79,
@@ -74,6 +75,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 32.31,
     动态收益: 72.27,
     增速: [4.96, 3.18, 5.17],
+    // ai预测5%-8%，基于直营提升以及高溢价，增速略高于GDP合理
     未来增速: 1.5 * HUSHEN_G,
     分红率: 75,
     回购率: 2.58,
@@ -88,6 +90,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 36.51,
     动态收益: 13.14,
     增速: [27.7, 6.67, 6.46],
+    // ai预测5%-8%，合理，经济的叉乘者
     未来增速: 1.5 * HUSHEN_G,
     分红率: 89.9,
     回购率: 0,
@@ -102,7 +105,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 48.52,
     动态收益: 10.52,
     增速: [305, 34.8, 23.4],
-    未来增速: 2 * HUSHEN_G,
+    // ai预测8%-12%，但潮玩热度有周期，需要调低一档
+    未来增速: 1.5 * HUSHEN_G,
     分红率: 34.45,
     回购率: 33.7 / 2,
     股权折价: 0.79,
@@ -128,6 +132,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 18.43,
     动态收益: 1.4,
     增速: [5.68, 3.79, 4.59],
+    // ai预测4%-6%，由于葛洲大坝事件，调低一档
     未来增速: 0.5 * HUSHEN_G,
     分红率: 75.75,
     回购率: 0,
@@ -142,6 +147,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 38.82,
     动态收益: 9.96,
     增速: [-0.73, 4.23, 9.25],
+    // ai预测6%-10%，光瓶酒竞争加剧，调低一档
     未来增速: HUSHEN_G,
     分红率: 54.5,
     回购率: 0,
