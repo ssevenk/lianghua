@@ -96,13 +96,13 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
-  const normalPe = (historyPe + growPe) / 2;
+  const normalPe = (historyPe + roicPe + growPe) / 3;
   const zhenshiPe = price / (dynamicYield || 1);
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / (dynamicYield || 1);
-    // 市盈率回归有不确定性，不能按百分百算。只能算大概率，即70%
-    return 70 * (normalPe / (zPe || 1) - 1)
+    // 市盈率回归有时间和预测上的不确定性，按一半概率来算
+    return 50 * (normalPe / (zPe || 1) - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
