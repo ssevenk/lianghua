@@ -60,8 +60,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     历史估值: 30.69,
     动态收益: 26.84,
     增速: [14.2, 14.3, 12.3],
-    未来增速: HUSHEN_G, 
-    // ai预测6%-9%，但AI给腾讯带来的更多是挑战和竞争者，以及额外的资本开支，因此调低一档
+    未来增速: 1.5 * HUSHEN_G,
+    // ai预测6%-9%，比较合理。AI给腾讯这种游戏+广告+互联网大厂带来的降本增效效果会很显著
     分红率: 17.72,
     回购率: 35.4,
     股权折价: 0.79,
@@ -158,7 +158,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'USSPYM',
     onlyPrice: true,
   },
-  
+
   // 老窖: {
   //   code: 'SZ000568',
   //   折价: 0.7,
