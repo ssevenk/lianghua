@@ -62,6 +62,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     增速: [14.2, 14.3, 12.3],
     未来增速: 1.5 * HUSHEN_G,
     // ai预测6%-9%，比较合理。AI给腾讯这种游戏+广告+互联网大厂带来的降本增效效果会很显著
+    // 分红率和回购率也得基于 Non-IFRS 口径，这样才一致
     分红率: 17.72,
     回购率: 35.4,
     股权折价: 0.79,
@@ -157,6 +158,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   SPYM: {
     code: 'USSPYM',
     onlyPrice: true,
+    动态收益: 1
   },
 
   // 老窖: {

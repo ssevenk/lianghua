@@ -21,35 +21,35 @@ import {
 import { fetchStockPrices, fetchExchangeRates } from './api';
 
 /**
- * 股票数据预处理：计算 ROIC 和 预期增速
+ * 股票数据预处理：计算预期增速
  */
 export const preprocessStock = (stock: StockConfig) => {
-  if (stock.利润表 && stock.roic表 && stock.现金) {
-    const roicTable = stock.roic表;
-    const profitTable = stock.利润表;
-    const cashTable = stock.现金;
+  // if (stock.利润表 && stock.roic表 && stock.现金) {
+  //   const roicTable = stock.roic表;
+  //   const profitTable = stock.利润表;
+  //   const cashTable = stock.现金;
 
-    // 用近5年的roic和最新一年的roic取平均（避免低估roic在持续改善的公司）
-    stock.roic =
-      (roicTable[4] +
-        (100 * profitTable.reduce((prev, next) => prev + next, 0)) /
-        (profitTable[0] / (roicTable[0] / 100) +
-          profitTable[1] / (roicTable[1] / 100) +
-          profitTable[2] / (roicTable[2] / 100) +
-          profitTable[3] / (roicTable[3] / 100) +
-          profitTable[4] / (roicTable[4] / 100))) / 2;
-    // 净现比
-    stock.cashP =
-      cashTable.reduce((prev, next) => prev + next, 0) /
-      profitTable.reduce((prev, next) => prev + next, 0);
-  } else if (stock.roic表) {
-    // 沪深300没有利润表处理的，由于银行占比高，以及亏损股的存在，roic有失真，要还原
-    stock.roic = (0.7 * stock.roic表.reduce((prev, cur) => prev + cur, 0)) / 5;
-    stock.cashP = 1;
-  } else {
-    stock.roic = 0;
-    stock.cashP = 1;
-  }
+  //   // 用近5年的roic和最新一年的roic取平均（避免低估roic在持续改善的公司）
+  //   stock.roic =
+  //     (roicTable[4] +
+  //       (100 * profitTable.reduce((prev, next) => prev + next, 0)) /
+  //       (profitTable[0] / (roicTable[0] / 100) +
+  //         profitTable[1] / (roicTable[1] / 100) +
+  //         profitTable[2] / (roicTable[2] / 100) +
+  //         profitTable[3] / (roicTable[3] / 100) +
+  //         profitTable[4] / (roicTable[4] / 100))) / 2;
+  //   // 净现比
+  //   stock.cashP =
+  //     cashTable.reduce((prev, next) => prev + next, 0) /
+  //     profitTable.reduce((prev, next) => prev + next, 0);
+  // } else if (stock.roic表) {
+  //   // 沪深300没有利润表处理的，由于银行占比高，以及亏损股的存在，roic有失真，要还原
+  //   stock.roic = (0.7 * stock.roic表.reduce((prev, cur) => prev + cur, 0)) / 5;
+  //   stock.cashP = 1;
+  // } else {
+  //   stock.roic = 0;
+  //   stock.cashP = 1;
+  // }
 
   // 补充3年后的增速
   if (stock.增速 && stock.未来增速 !== undefined && stock.增速.length === 3) {
@@ -64,22 +64,10 @@ export const preprocessStock = (stock: StockConfig) => {
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
   preprocessStock(stock);
-  const roic = stock.roic || 0;
-  const cashP = stock.cashP || 0;
-  const historicalPe = stock.历史估值 || 0;
-  const dynamicYield = stock.动态收益 || 0;
-  const bonusRate = stock.分红率 || 0;
-  const buybackRate = stock.回购率 || 0;
-  const equityZhejia = stock.股权折价 || 0;
-  const extraValue = stock.额外价值 || 0;
+  // 1. 历史估值分量 (上限 30)
+  const historyPe = Math.min(30, stock.历史估值 || 0);
 
-  // 1. ROIC 估值分量 (上限 30)
-  const roicPe = Math.min(30, roic * cashP);
-
-  // 2. 历史估值分量 (上限 30)
-  const historyPe = Math.min(30, historicalPe);
-
-  // 3. 增速计算pe
+  // 2. 增速计算pe
   const growthList = stock.增速 || [0, 0, 0]
   const y2 = 1 + (growthList[1] || 0) / 100;
   const y3 = y2 * (1 + (growthList[2] || 0) / 100);
@@ -96,17 +84,17 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
-  const normalPe = (historyPe + roicPe + growPe) / 3;
-  const zhenshiPe = price / (dynamicYield || 1);
+  const normalPe = (historyPe + growPe) / 3;
+  const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
-    const zPe = currPrice / (dynamicYield || 1);
-    // 市盈率回归有时间和预测上的不确定性，按一半概率来算
+    const zPe = currPrice / stock.动态收益;
+    // 估值回归有时间和预测上的不确定性，按一半概率来算
     return 50 * (normalPe / (zPe || 1) - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
-    const zPe = currPrice / (dynamicYield || 1);
+    const zPe = currPrice / stock.动态收益 || 1;
     const y1 = 100 / zPe;
     const dy2 = (y1 * (1 + (growthList[1] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy3 = (dy2 * (1 + (growthList[2] || 0) / 100)) / (1 + ZHE_XIAN);
@@ -117,20 +105,20 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const dy8 = (dy7 * (1 + (growthList[7] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy9 = (dy8 * (1 + (growthList[8] || 0) / 100)) / (1 + ZHE_XIAN);
     const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
-    return (bonusRate * equityZhejia + buybackRate) *
+    return ((stock.分红率 || 0) * (stock.股权折价 || 0) + (stock.回购率 || 0)) *
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
-  const v1Num = calculatePev(price) + calculatePbv(price) + extraValue;
+  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0);
   const v1 = v1Num.toFixed(2);
 
   const p2 = price * 1.05;
-  const v2 = (calculatePev(p2) + calculatePbv(p2) + extraValue).toFixed(2);
+  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0)).toFixed(2);
 
   const p3 = price * 0.95;
-  const v3 = (calculatePev(p3) + calculatePbv(p3) + extraValue).toFixed(2);
+  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0)).toFixed(2);
 
-  return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe, roic, cashP };
+  return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe };
 };
 
 /**

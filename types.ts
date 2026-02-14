@@ -5,7 +5,7 @@ export interface StockConfig {
   roic表?: number[];
   利润表?: number[];
   历史估值?: number;
-  动态收益?: number;
+  动态收益: number;
   增速?: number[];
   未来增速?: number;
   分红率?: number;
@@ -39,8 +39,6 @@ export interface CalculatedStock extends StockConfig {
   zhenshiPe: number;
   normalPe: number;
   normalPb?: number;
-  roic: number;
-  cashP: number;
 }
 
 export interface TagAllocation {
