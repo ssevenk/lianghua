@@ -64,10 +64,8 @@ export const preprocessStock = (stock: StockConfig) => {
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
   preprocessStock(stock);
-  // 1. 历史估值分量 (上限 30)
-  const historyPe = Math.min(30, stock.历史估值 || 0);
 
-  // 2. 增速计算pe
+  // 1. 增速计算pe
   const growthList = stock.增速 || [0, 0, 0]
   const y2 = 1 + (growthList[1] || 0) / 100;
   const y3 = y2 * (1 + (growthList[2] || 0) / 100);
@@ -79,12 +77,20 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const y9 = y8 * (1 + (growthList[8] || 0) / 100);
   const y10 = y9 * (1 + (growthList[9] || 0) / 100);
 
+  // 2. 目标价格pe计算
+  let targetPe = (stock.目标价格 || 0) / stock.动态收益
+  if(!targetPe) {
+    // 沪深300没有目标价格，用历史pe来算
+    targetPe = stock.历史估值 || 0
+  }
+
   const growPe = Math.min(
     30,
     (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
   );
 
-  const normalPe = (historyPe + growPe) / 3;
+  // 封顶30
+  const normalPe = Math.min(30, (targetPe + growPe) / 2)
   const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
