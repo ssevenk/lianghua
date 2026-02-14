@@ -79,20 +79,16 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const growPe = 1.2 * (y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
 
   // 2. 目标价格pe计算
-  let targetPe = (stock.目标价格 || 0) / stock.动态收益
-  if(!targetPe) {
-    // 沪深300没有目标价格，用历史pe来算
-    targetPe = stock.历史估值 || 0
-  }
+  const targetPe = (stock.目标价格 || 0) / stock.动态收益
 
-  // 封顶30
-  const normalPe = Math.min(30, (targetPe + growPe) / 2)
+  // 封顶30, 沪深300没有目标价格，只用历史pe和growpe来算
+  const normalPe = Math.min(30, targetPe ? (targetPe + (stock.历史估值 || 0) + growPe) / 3 : ((stock.历史估值 || 0) + growPe) / 2)
   const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / stock.动态收益;
-    // 估值回归有时间和预测上的不确定性，按一半概率来算
-    return 50 * (normalPe / (zPe || 1) - 1)
+    // 估值回归有时间和预测上的不确定性，按大概率(70%)来算
+    return 70 * (normalPe / (zPe || 1) - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
