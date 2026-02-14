@@ -52,30 +52,31 @@ export const preprocessStock = (stock: StockConfig) => {
   // }
 
   // 补充3年后的增速
-  if (stock.增速 && stock.未来增速 !== undefined && stock.增速.length === 3) {
-    for (let i = 1; i <= 7; i += 1) {
-      stock.增速.push(stock.未来增速)
-    }
-  }
+  // if (stock.增速 && stock.未来增速 !== undefined && stock.增速.length === 3) {
+  //   for (let i = 1; i <= 7; i += 1) {
+  //     stock.增速.push(stock.未来增速)
+  //   }
+  // }
 };
 
 /**
  * 核心建模计算：根据折现模型和估值指标计算个股合理分值
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
-  preprocessStock(stock);
-
   // 1. 增速计算pe
   const growthList = stock.增速 || [0, 0, 0]
-  const y2 = 1 + (growthList[1] || 0) / 100;
-  const y3 = y2 * (1 + (growthList[2] || 0) / 100);
-  const y4 = y3 * (1 + (growthList[3] || 0) / 100);
-  const y5 = y4 * (1 + (growthList[4] || 0) / 100);
-  const y6 = y5 * (1 + (growthList[5] || 0) / 100);
-  const y7 = y6 * (1 + (growthList[6] || 0) / 100);
-  const y8 = y7 * (1 + (growthList[7] || 0) / 100);
-  const y9 = y8 * (1 + (growthList[8] || 0) / 100);
-  const y10 = y9 * (1 + (growthList[9] || 0) / 100);
+  const y1 = 1 + (growthList[1] || 0) / 100;
+  const y2 = y1 * (1 + (growthList[2] || 0) / 100)
+  const y3 = y2 * (1 + (stock.未来增速 || 0) / 100);
+  const y4 = y3 * (1 + (stock.未来增速 || 0) / 100);
+  const y5 = y4 * (1 + (stock.未来增速 || 0) / 100);
+  const y6 = y5 * (1 + (stock.未来增速 || 0) / 100);
+  const y7 = y6 * (1 + (stock.未来增速 || 0) / 100);
+  const y8 = y7 * (1 + (stock.未来增速 || 0) / 100);
+  const y9 = y8 * (1 + (stock.未来增速 || 0) / 100);
+  const y10 = y9 * (1 + (stock.未来增速 || 0) / 100);
+  // 年化 10% 不乘以系数的话算出来 17，乘以系数 1.2 后才是 20，比较合理
+  const growPe = 1.2 * (y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
 
   // 2. 目标价格pe计算
   let targetPe = (stock.目标价格 || 0) / stock.动态收益
@@ -83,11 +84,6 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     // 沪深300没有目标价格，用历史pe来算
     targetPe = stock.历史估值 || 0
   }
-
-  const growPe = Math.min(
-    30,
-    (1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
-  );
 
   // 封顶30
   const normalPe = Math.min(30, (targetPe + growPe) / 2)
