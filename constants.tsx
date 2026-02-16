@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 184191;
+export const ALL_DEBT = 182691;
 export const MI_RATIO = 0.088190268;
 export const MA_RATIO = 0.193524777;
 
@@ -30,11 +30,11 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 };
 
 export const RAW_PROPERTIES: Property[] = [
-  { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 77058, name: '人民币' },
+  { code: 'HK00700', tag: '中港', num: 300, name: '腾讯', exchange: 'hk' },
+  { tag: '现金', num: 119427, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 263, exchange: 'us' },
-  { tag: '现金', num: 380039 - 314060, name: '港币', exchange: 'hk' },
-  { tag: '现金', num: 23.2 + 6846 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
+  { tag: '现金', num: 3363 + 392511 - 335440, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 17.24 + 120.47 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 1800, danbao: true },
   { code: 'USIEF', tag: '债券', name: '美债', num: 219, exchange: 'us' },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
@@ -45,7 +45,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 4700, code: 'SH601899', danbao: true },
-  { tag: '中港', code: 'HK09992', num: 3000, name: '泡泡玛特', exchange: 'hk' }
+  { tag: '中港', code: 'HK09992', num: 2400, name: '泡泡玛特', exchange: 'hk' }
 ];
 
 // 沪深300增速，用来作为增速预估的基准
