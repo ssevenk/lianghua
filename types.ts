@@ -1,9 +1,6 @@
 
 export interface StockConfig {
   code: string;
-  现金?: number[];
-  roic表?: number[];
-  利润表?: number[];
   历史估值?: number;
   目标价格?: number;
   动态收益: number;

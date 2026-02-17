@@ -16,48 +16,8 @@ import {
   MA_RATIO,
   ALL_DEBT,
   MA_YEAR_START_ASSET,
-  HUSHEN_G
 } from '../constants';
 import { fetchStockPrices, fetchExchangeRates } from './api';
-
-/**
- * 股票数据预处理：计算预期增速
- */
-export const preprocessStock = (stock: StockConfig) => {
-  // if (stock.利润表 && stock.roic表 && stock.现金) {
-  //   const roicTable = stock.roic表;
-  //   const profitTable = stock.利润表;
-  //   const cashTable = stock.现金;
-
-  //   // 用近5年的roic和最新一年的roic取平均（避免低估roic在持续改善的公司）
-  //   stock.roic =
-  //     (roicTable[4] +
-  //       (100 * profitTable.reduce((prev, next) => prev + next, 0)) /
-  //       (profitTable[0] / (roicTable[0] / 100) +
-  //         profitTable[1] / (roicTable[1] / 100) +
-  //         profitTable[2] / (roicTable[2] / 100) +
-  //         profitTable[3] / (roicTable[3] / 100) +
-  //         profitTable[4] / (roicTable[4] / 100))) / 2;
-  //   // 净现比
-  //   stock.cashP =
-  //     cashTable.reduce((prev, next) => prev + next, 0) /
-  //     profitTable.reduce((prev, next) => prev + next, 0);
-  // } else if (stock.roic表) {
-  //   // 沪深300没有利润表处理的，由于银行占比高，以及亏损股的存在，roic有失真，要还原
-  //   stock.roic = (0.7 * stock.roic表.reduce((prev, cur) => prev + cur, 0)) / 5;
-  //   stock.cashP = 1;
-  // } else {
-  //   stock.roic = 0;
-  //   stock.cashP = 1;
-  // }
-
-  // 补充3年后的增速
-  // if (stock.增速 && stock.未来增速 !== undefined && stock.增速.length === 3) {
-  //   for (let i = 1; i <= 7; i += 1) {
-  //     stock.增速.push(stock.未来增速)
-  //   }
-  // }
-};
 
 /**
  * 核心建模计算：根据折现模型和估值指标计算个股合理分值
