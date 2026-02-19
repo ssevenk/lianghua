@@ -44,8 +44,11 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   // 3. 历史估值
   const historyPe = Math.min(30, stock.历史估值 || 0)
 
-  // 封顶30, 沪深300没有目标价格，只用历史pe和growpe来算
-  const normalPe = targetPe ? (targetPe + historyPe + growPe) / 3 : (historyPe + growPe) / 2
+  // 沪深300没有目标价格，只用历史pe和growpe来算
+  let normalPe = targetPe ? (targetPe + historyPe + growPe) / 3 : (historyPe + growPe) / 2
+  if (stock.估值折价) {
+    normalPe = normalPe * stock.估值折价
+  }
   const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
