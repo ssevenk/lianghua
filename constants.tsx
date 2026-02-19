@@ -52,6 +52,19 @@ export const RAW_PROPERTIES: Property[] = [
 export const HUSHEN_G = 5.17
 
 export const RAW_STOCKS: Record<string, StockConfig> = {
+  招行: {
+    code: 'SH600036',
+    历史估值: 8.04,
+    目标价格: 55.13,
+    动态收益: 5.84,
+    增速: [-0.82, 2.06, 4.12],
+    未来增速: 0.5 * HUSHEN_G,
+    // ai预测4%-5%，比较合理，由于长期看净息差压力+房地产压力始终存在，因此适当调低
+    分红率: 33.26,
+    回购率: 0,
+    股权折价: 1,
+    额外价值: 2,
+  },
   腾讯: {
     code: 'HK00700',
     历史估值: 30.69,
