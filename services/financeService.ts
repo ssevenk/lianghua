@@ -36,16 +36,16 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const y9 = y8 * (1 + (stock.未来增速 || 0) / 100);
   const y10 = y9 * (1 + (stock.未来增速 || 0) / 100);
   // 年化 10% 不乘以系数的话算出来 17，乘以系数 1.2 后才是 20，比较合理
-  const growPe = Math.min(30, 1.2 * (y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10))
+  const growPe = 1.2 * (y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10)
 
-  // 2. 目标价格pe计算
-  const targetPe = Math.min(30, (stock.目标价格 || 0) / stock.动态收益)
+  // 2. 目标价格pe计算， 沪深300没有目标价格，用历史pe
+  let targetPe = (stock.目标价格 || 0) / stock.动态收益
+  if(!targetPe){
+    targetPe = stock.历史估值 || 0
+  }
 
-  // 3. 历史估值
-  const historyPe = Math.min(30, stock.历史估值 || 0)
-
-  // 封顶30, 沪深300没有目标价格，只用历史pe和growpe来算
-  const normalPe = targetPe ? (targetPe + historyPe + growPe) / 3 : (historyPe + growPe) / 2
+  // 封顶30
+  const normalPe = Math.min(30, (targetPe + growPe) / 2)
   const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
