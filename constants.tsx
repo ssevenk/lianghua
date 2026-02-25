@@ -10,11 +10,11 @@ import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
 export const ALL_DEBT = 182691;
-export const MI_RATIO = 0.09937106;
-export const MA_RATIO = 0.19115142;
+export const MI_RATIO = 0.20093138;
+export const MA_RATIO = 0.16890258;
 
 // 初始资金常量
-export const MI_INITIAL = 242000;
+export const MI_INITIAL = 697613;
 export const MA_INITIAL = 400000;
 // 妈妈今年初始资产 (用于收益率计算基准)
 export const MA_YEAR_START_ASSET = 546776;
