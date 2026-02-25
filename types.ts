@@ -9,7 +9,6 @@ export interface StockConfig {
   分红率?: number;
   回购率?: number;
   股权折价?: number;
-  估值折价?: number;
   额外价值?: number;
   onlyPrice?: boolean;
   ifPrice?: number;
