@@ -23,29 +23,13 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  * 核心建模计算：根据折现模型和估值指标计算个股合理分值
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
-  // 1. 增速计算pe
-  const growthList = stock.增速 || [0, 0, 0]
-  const y1 = 1 + (growthList[1] || 0) / 100;
-  const y2 = y1 * (1 + (growthList[2] || 0) / 100)
-  const y3 = y2 * (1 + (stock.未来增速 || 0) / 100);
-  const y4 = y3 * (1 + (stock.未来增速 || 0) / 100);
-  const y5 = y4 * (1 + (stock.未来增速 || 0) / 100);
-  const y6 = y5 * (1 + (stock.未来增速 || 0) / 100);
-  const y7 = y6 * (1 + (stock.未来增速 || 0) / 100);
-  const y8 = y7 * (1 + (stock.未来增速 || 0) / 100);
-  const y9 = y8 * (1 + (stock.未来增速 || 0) / 100);
-  const y10 = y9 * (1 + (stock.未来增速 || 0) / 100);
-  // 年化 10% 不乘以系数的话算出来 17，乘以系数 1.2 后才是 20，比较合理
-  const growPe = Math.min(30, 1.2 * (y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8 + y9 + y10))
-
-  // 2. 目标价格pe计算
-  const targetPe = Math.min(30, (stock.目标价格 || 0) / stock.动态收益)
-
-  // 3. 历史估值
-  const historyPe = Math.min(30, stock.历史估值 || 0)
+  // 目标价格pe计算
+  let normalPe = (stock.目标价格 || 0) / stock.动态收益
+  if (!normalPe) {
+    normalPe = stock.历史估值 || 0
+  }
 
   // 沪深300没有目标价格，只用历史pe和growpe来算
-  const normalPe = targetPe ? (targetPe + historyPe + growPe) / 3 : (historyPe + growPe) / 2
   const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
@@ -54,6 +38,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     return 70 * (normalPe / (zPe || 1) - 1)
   };
 
+  const growthList = stock.增速 || [0, 0, 0]
   const calculatePbv = (currPrice: number) => {
     const zPe = currPrice / stock.动态收益 || 1;
     const y1 = 100 / zPe;
