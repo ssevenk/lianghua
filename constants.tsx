@@ -54,7 +54,6 @@ export const HUSHEN_G = 5.17
 export const RAW_STOCKS: Record<string, StockConfig> = {
   招行: {
     code: 'SH600036',
-    历史估值: 8.04,
     目标价格: 55.4,
     动态收益: 5.7,
     增速: [1.21, 2.81, 4.02],
@@ -67,7 +66,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   腾讯: {
     code: 'HK00700',
-    历史估值: 30.69,
     目标价格: 772,
     动态收益: 30.41, // 要用non-ifrs口径(投资圈估值默认用这个）
     增速: [17.16, 13.76, 11.71],
@@ -81,7 +79,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   茅台: {
     code: 'SH600519',
-    历史估值: 32.31,
     目标价格: 1901,
     动态收益: 72.41,
     增速: [5.15, 5.68, 6.69],
@@ -94,7 +91,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   港交: {
     code: 'HK00388',
-    历史估值: 36.51,
     目标价格: 519.67,
     动态收益: 13.61,
     增速: [32.26, 1.96, 7.71],
@@ -107,7 +103,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   泡泡: {
     code: 'HK09992',
-    历史估值: 48.52,
     目标价格: 364,
     动态收益: 10.21,
     增速: [283.56, 30.64, 23.86],
@@ -131,7 +126,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   长电: {
     code: 'SH600900',
-    历史估值: 18.43,
     目标价格: 32.62,
     动态收益: 1.3964,
     增速: [5.14, 4.62, 4.23],
@@ -144,7 +138,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   汾酒: {
     code: 'SH600809',
-    历史估值: 38.82,
     目标价格: 212.8,
     动态收益: 9.99,
     增速: [-0.51, 5.29, 8.93],
@@ -157,7 +150,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   顺丰: {
     code: 'SZ002352',
-    历史估值: 35.48,
     动态收益: 2.175,
     目标价格: 55.22,
     增速: [7.85, 13.71, 13.81],
@@ -176,7 +168,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   },
   // 老窖: {
   //   code: 'SZ000568',
-  //   历史估值: 29.36,
   //   动态收益: 8.86,
   //   目标价格: 164.28,
   //   增速: [-3.22, 1.99, 4.82],
@@ -193,7 +184,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   //   现金: [52.8, 56.8, 58.9, 76.2, 85.6],
   //   roic表: [8.19, 9.4, 12, 12.2, 14.3],
   //   利润表: [26, 31.5, 47.6, 56.3, 75],
-  //   历史估值: 19.61,
   //   动态收益: 3.72,
   //   增速: [29.4, 13.7, 15.2],
   //   分红率: 58.21,
@@ -208,7 +198,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   //   现金: [52.2, 95.9, 67, 76.8, 66.4],
   //   roic表: [24.2, 30.8, 13.2, 22.9, 24.3],
   //   利润表: [40, 60.6, 27.9, 48.3, 51.5],
-  //   历史估值: 22.71,
   //   动态收益: 0.39,
   //   增速: [9.53, 10.7, 8.57],
   //   分红率: 86.79,
