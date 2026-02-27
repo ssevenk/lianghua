@@ -14,6 +14,7 @@ export interface StockConfig {
   ifPrice?: number;
   roic?: number;
   cashP?: number;
+  次级?: boolean;
 }
 
 export interface Property {

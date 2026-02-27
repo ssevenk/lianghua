@@ -69,7 +69,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 33.26,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2 - 20
+    额外价值: 2,
+    次级: true
   },
   腾讯: {
     code: 'HK00700',
@@ -141,7 +142,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 75.75,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2 - 20
+    额外价值: 2,
+    次级: true
   },
   汾酒: {
     code: 'SH600809',
@@ -153,7 +155,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 54.5,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2 - 20
+    额外价值: 2,
+    次级: true
   },
   顺丰: {
     code: 'SZ002352',
@@ -166,7 +169,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 35,
     回购率: 14.4,
     股权折价: 1,
-    额外价值: 3 - 20
+    额外价值: 3,
+    次级: true
   },
   阿胶: {
     code: 'SZ000423',
@@ -178,7 +182,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 100,
     回购率: 0,
     股权折价: 1,
-    额外价值: 3 - 20
+    额外价值: 3,
+    次级: true
   },
   SPYM: {
     code: 'USSPYM',
