@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 154926;
+export const ALL_DEBT = 244438;
 export const MI_RATIO = 0.20093138;
 export const MA_RATIO = 0.16890258;
 
@@ -30,16 +30,16 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 };
 
 export const RAW_PROPERTIES: Property[] = [
-  { code: 'HK00700', tag: '中港', num: 300, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 51679, name: '人民币' },
+  { code: 'HK00700', tag: '中港', num: 400, name: '腾讯', exchange: 'hk' },
+  { tag: '现金', num: 6541, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
-  { tag: '现金', num: 3363 + 57125, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 3363 + 57125 - 50847, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3823 + 17.27 + 120.47 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
-  { code: 'SH511520', tag: '债券', name: '中债', num: 1800, danbao: true },
+  { code: 'SH511520', tag: '债券', name: '中债', num: 3100, danbao: true },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
   { code: 'SH600938', tag: '石油', num: 1100, danbao: true },
   { code: 'SH518880', tag: '黄金', num: 21600, name: '黄金etf', danbao: true },
-  { code: 'SH600809', tag: '中港', num: 100, name: '汾酒', danbao: true },
+  { code: 'SH600809', tag: '中港', num: 0, name: '汾酒', danbao: true },
   { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 4700, code: 'SH601899', danbao: true },
