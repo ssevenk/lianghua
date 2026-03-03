@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.03;
-export const ALL_DEBT = 244438;
+export const ALL_DEBT = 244438 - 43.41 * 700
 export const MI_RATIO = 0.20093138;
 export const MA_RATIO = 0.16890258;
 
@@ -37,7 +37,7 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '现金', num: 3823 + 17.27 + 120.47 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 3100, danbao: true },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
-  { code: 'SH600938', tag: '石油', num: 1100, danbao: true },
+  { code: 'SH600938', tag: '石油', num: 400, danbao: true },
   { code: 'SH518880', tag: '黄金', num: 21600, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 0, name: '汾酒', danbao: true },
   { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
@@ -47,10 +47,10 @@ export const RAW_PROPERTIES: Property[] = [
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 400 },
-  { code: 'SH600938', tag: '石油', num: 600 },
+  { code: 'SH600938', tag: '石油', num: 500 },
   { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
   { tag: '有色', num: 700, code: 'SH601899' },
-  { tag: '现金', num: 108152, name: '人民币' },
+  { tag: '现金', num: 108152 + 43.41 * 100, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 4600, name: '黄金etf' },
 ];
 
