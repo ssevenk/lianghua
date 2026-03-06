@@ -183,7 +183,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     动态收益: 8.12,
     目标价格: 167.31,
     // 机构预测三年增速 -8.66, 5.98, 9.18
-    未来增速: 0,
+    未来增速: 0.25 * HUSHEN_G,
     分红率: 70,
     回购率: 0,
     股权折价: 1,
