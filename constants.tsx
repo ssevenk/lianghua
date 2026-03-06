@@ -197,7 +197,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     目标价格: 147,
     g1: 6.56,
     g2: 8.78,
-    远期增速: 0.25 * HUSHEN_G,
+    远期增速: HUSHEN_G,
     分红率: 70,
     回购率: 0,
     股权折价: 1,
