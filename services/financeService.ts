@@ -38,19 +38,19 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     return 70 * (normalPe / (zPe || 1) - 1)
   };
 
-  const growthList = stock.增速 || [0, 0, 0]
   const calculatePbv = (currPrice: number) => {
     const zPe = currPrice / stock.动态收益 || 1;
     const y1 = 100 / zPe;
-    const dy2 = (y1 * (1 + (growthList[1] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy3 = (dy2 * (1 + (growthList[2] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy4 = (dy3 * (1 + (growthList[3] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy5 = (dy4 * (1 + (growthList[4] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy6 = (dy5 * (1 + (growthList[5] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy7 = (dy6 * (1 + (growthList[6] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy8 = (dy7 * (1 + (growthList[7] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy9 = (dy8 * (1 + (growthList[8] || 0) / 100)) / (1 + ZHE_XIAN);
-    const dy10 = (dy9 * (1 + (growthList[9] || 0) / 100)) / (1 + ZHE_XIAN);
+    const g = 1 + (stock.未来增速 || 0) / 100
+    const dy2 = (y1 * g) / (1 + ZHE_XIAN);
+    const dy3 = (dy2 * g) / (1 + ZHE_XIAN);
+    const dy4 = (dy3 * g) / (1 + ZHE_XIAN);
+    const dy5 = (dy4 * g) / (1 + ZHE_XIAN);
+    const dy6 = (dy5 * g) / (1 + ZHE_XIAN);
+    const dy7 = (dy6 * g) / (1 + ZHE_XIAN);
+    const dy8 = (dy7 * g) / (1 + ZHE_XIAN);
+    const dy9 = (dy8 * g) / (1 + ZHE_XIAN);
+    const dy10 = (dy9 * g) / (1 + ZHE_XIAN);
     return ((stock.分红率 || 0) * (stock.股权折价 || 0) + (stock.回购率 || 0)) *
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
