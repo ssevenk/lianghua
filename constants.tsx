@@ -60,19 +60,6 @@ export const HUSHEN_G = 5.17
 // 反向验证：50的阿胶，200的泡泡，1400的茅台，500的腾讯，100的老窖 是差不多的接近极度低估的
 
 export const RAW_STOCKS: Record<string, StockConfig> = {
-  招行: {
-    code: 'SH600036',
-    目标价格: 53.8,
-    动态收益: 5.7,
-    g1: 3.79,
-    g2: 4.6,
-    远期增速: 0.5 * HUSHEN_G,
-    分红率: 33.26,
-    回购率: 0,
-    股权折价: 1,
-    额外价值: 2,
-    确定性: false
-  },
   腾讯: {
     code: 'HK00700',
     目标价格: 729,
@@ -113,19 +100,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     额外价值: 0,
     确定性: true
   },
-  泡泡: {
-    code: 'HK09992',
-    目标价格: 340,
-    动态收益: 10.89,
-    g1: 31.2,
-    g2: 22.8,
-    远期增速: 1.5 * HUSHEN_G,
-    分红率: 34.45,
-    回购率: 33.7,
-    股权折价: 0.79,
-    额外价值: 0,
-    确定性: false
-  },
   沪深: {
     code: 'SH510300',
     历史估值: 12.4,
@@ -151,6 +125,32 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     股权折价: 1,
     额外价值: 2,
     确定性: true
+  },
+  招行: {
+    code: 'SH600036',
+    目标价格: 53.8,
+    动态收益: 5.7,
+    g1: 3.79,
+    g2: 4.6,
+    远期增速: 0.5 * HUSHEN_G,
+    分红率: 33.26,
+    回购率: 0,
+    股权折价: 1,
+    额外价值: 2,
+    确定性: true
+  },
+  泡泡: {
+    code: 'HK09992',
+    目标价格: 340,
+    动态收益: 10.89,
+    g1: 31.2,
+    g2: 22.8,
+    远期增速: 1.5 * HUSHEN_G,
+    分红率: 34.45,
+    回购率: 33.7,
+    股权折价: 0.79,
+    额外价值: 0,
+    确定性: false
   },
   汾酒: {
     code: 'SH600809',
@@ -190,11 +190,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     股权折价: 1,
     额外价值: 3,
     确定性: false
-  },
-  SPYM: {
-    code: 'USSPYM',
-    onlyPrice: true,
-    动态收益: 1
   },
   老窖: {
     code: 'SZ000568',
