@@ -57,8 +57,6 @@ export const RAW_PROPERTIES: Property[] = [
 // 沪深300增速，用来作为增速预估的基准
 export const HUSHEN_G = 5.17
 
-// 反向验证：50的阿胶，200的泡泡，1400的茅台，500的腾讯，100的老窖, 39的招行 是差不多的接近极度低估的
-
 export const RAW_STOCKS: Record<string, StockConfig> = {
   腾讯: {
     code: 'HK00700',
