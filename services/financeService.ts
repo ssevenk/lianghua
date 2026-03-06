@@ -24,16 +24,15 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
   // 目标价格pe计算,s级封顶30，a级封顶25
-  let normalPe = Math.min(stock.次级 ? 25 : 30, (stock.目标价格 || 0) / stock.动态收益)
-  if (!normalPe) {
-    normalPe = stock.历史估值 || 0
-  }
+  const normalPe = Math.min(stock.次级 ? 25 : 30, (stock.目标价格 || 0) / stock.动态收益)
 
   // 沪深300没有目标价格，只用历史pe和growpe来算
   const zhenshiPe = price / stock.动态收益
 
   const calculatePev = (currPrice: number) => {
     const zPe = currPrice / stock.动态收益;
+    // 沪深300没有目标价，不做pe价值计算
+    if (!normalPe) return 0;
     // 估值回归有时间和预测上的不确定性，按大概率(70%)来算
     return 70 * (normalPe / (zPe || 1) - 1)
   };
