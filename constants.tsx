@@ -183,7 +183,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     g1: 14.92,
     g2: 14.58,
     远期增速: HUSHEN_G,
-    分红率: 100,
+    分红率: 95, // 任何企业分红+回购上限95，不能按100算（10年百分百分红不现实）
     回购率: 0,
     股权折价: 1,
     额外价值: 3,
