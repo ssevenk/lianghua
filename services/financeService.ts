@@ -23,12 +23,8 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  * 核心建模计算：根据折现模型和估值指标计算个股合理分值
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
-  // 目标价格pe计算
-  let normalPe = (stock.目标价格 || 0) / stock.动态收益
-  if (stock.次级) {
-    // 次级企业预留30%折价空间
-    normalPe *= 0.7
-  }
+  // 目标价格pe计算,s级封顶30，a级封顶25
+  const normalPe = Math.min(stock.次级 ? 25 : 30, (stock.目标价格 || 0) / stock.动态收益)
 
   // 沪深300没有目标价格，只用历史pe和growpe来算
   const zhenshiPe = price / stock.动态收益
@@ -58,14 +54,15 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
-  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0)
+  // 次级减去20的风险溢价（默认低一档）
+  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0) - (stock.次级 ? 20 : 0)
   const v1 = v1Num.toFixed(2);
 
   const p2 = price * 1.05;
-  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0)).toFixed(2);
+  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0) - (stock.次级 ? 20 : 0)).toFixed(2);
 
   const p3 = price * 0.95;
-  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0)).toFixed(2);
+  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0) - (stock.次级 ? 20 : 0)).toFixed(2);
 
   return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe };
 };
