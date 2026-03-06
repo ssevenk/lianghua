@@ -57,6 +57,8 @@ export const RAW_PROPERTIES: Property[] = [
 // 沪深300增速，用来作为增速预估的基准
 export const HUSHEN_G = 5.17
 
+// 反向验证：50的阿胶，200的泡泡，1400的茅台，500的腾讯，100的老窖 是差不多的接近极度低估的
+
 export const RAW_STOCKS: Record<string, StockConfig> = {
   招行: {
     code: 'SH600036',
@@ -183,7 +185,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     g1: 14.92,
     g2: 14.58,
     远期增速: HUSHEN_G,
-    分红率: 95, // 任何企业分红+回购上限95，不能按100算（10年百分百分红不现实）
+    分红率: 90, // 任何企业分红+回购上限90，不能按100算（10年百分百分红不现实）
     回购率: 0,
     股权折价: 1,
     额外价值: 3,

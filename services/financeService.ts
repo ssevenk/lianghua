@@ -56,7 +56,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
-  // 减去20的风险溢价（默认低一档）
+  // 不确定性的企业，减去一档的风险溢价
   const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)
   const v1 = v1Num.toFixed(2);
 
