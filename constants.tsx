@@ -62,7 +62,7 @@ export const HUSHEN_G = 5.17
 export const RAW_STOCKS: Record<string, StockConfig> = {
   腾讯: {
     code: 'HK00700',
-    目标价格: 729,
+    目标价格: 740,
     动态收益: 29.48, // 要用non-ifrs口径(投资圈估值默认用这个）
     g1: 15.1,
     g2: 11.5,
