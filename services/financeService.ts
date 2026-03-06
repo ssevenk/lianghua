@@ -23,8 +23,8 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  * 核心建模计算：根据折现模型和估值指标计算个股合理分值
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
-  // 目标价格pe计算,s级封顶30，a级封顶25
-  const normalPe = Math.min(stock.确定性 ? 30 : 25, (stock.目标价格 || 0) / stock.动态收益)
+  // 目标价格pe计算,封顶30
+  const normalPe = Math.min(30, (stock.目标价格 || 0) / stock.动态收益)
 
   // 沪深300没有目标价格，只用历史pe和growpe来算
   const zhenshiPe = price / stock.动态收益

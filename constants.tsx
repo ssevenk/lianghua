@@ -115,7 +115,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'HK09992',
     目标价格: 364,
     动态收益: 10.21,
-    g1: 300.64,
+    g1: 30.64,
     g2: 23.86,
     远期增速: 1.5 * HUSHEN_G,
     分红率: 34.45,
