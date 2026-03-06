@@ -4,7 +4,9 @@ export interface StockConfig {
   历史估值?: number;
   目标价格?: number;
   动态收益: number;
-  未来增速?: number;
+  g1?: number; // 未来第一年
+  g2?: number; // 未来第二年
+  远期增速?: number;
   分红率?: number;
   回购率?: number;
   股权折价?: number;
@@ -13,7 +15,7 @@ export interface StockConfig {
   ifPrice?: number;
   roic?: number;
   cashP?: number;
-  次级?: boolean;
+  确定性?: boolean; // 指股东能获得上述中性利润的概率有多大，基于商业模式等六维度表得出
 }
 
 export interface Property {

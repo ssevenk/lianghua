@@ -24,7 +24,7 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
   // 目标价格pe计算,s级封顶30，a级封顶25
-  const normalPe = Math.min(stock.次级 ? 25 : 30, (stock.目标价格 || 0) / stock.动态收益)
+  const normalPe = Math.min(stock.确定性 ? 30 : 25, (stock.目标价格 || 0) / stock.动态收益)
 
   // 沪深300没有目标价格，只用历史pe和growpe来算
   const zhenshiPe = price / stock.动态收益
@@ -40,9 +40,11 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const calculatePbv = (currPrice: number) => {
     const zPe = currPrice / stock.动态收益 || 1;
     const y1 = 100 / zPe;
-    const g = 1 + (stock.未来增速 || 0) / 100
-    const dy2 = (y1 * g) / (1 + ZHE_XIAN);
-    const dy3 = (dy2 * g) / (1 + ZHE_XIAN);
+    const g = 1 + (stock.远期增速 || 0) / 100
+    const g1 = 1 + (stock.g1 || 0) / 100
+    const g2 = 1 + (stock.g2 || 0) / 100
+    const dy2 = (y1 * g1) / (1 + ZHE_XIAN);
+    const dy3 = (dy2 * g2) / (1 + ZHE_XIAN);
     const dy4 = (dy3 * g) / (1 + ZHE_XIAN);
     const dy5 = (dy4 * g) / (1 + ZHE_XIAN);
     const dy6 = (dy5 * g) / (1 + ZHE_XIAN);
@@ -54,15 +56,15 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
-  // 次级减去20的风险溢价（默认低一档）
-  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0) - (stock.次级 ? 20 : 0)
+  // 减去20的风险溢价（默认低一档）
+  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)
   const v1 = v1Num.toFixed(2);
 
   const p2 = price * 1.05;
-  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0) - (stock.次级 ? 20 : 0)).toFixed(2);
+  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)).toFixed(2);
 
   const p3 = price * 0.95;
-  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0) - (stock.次级 ? 20 : 0)).toFixed(2);
+  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)).toFixed(2);
 
   return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe };
 };
