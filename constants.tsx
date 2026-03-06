@@ -134,8 +134,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 75.75,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2,
-    次级: true
+    额外价值: 2
   },
   汾酒: {
     code: 'SH600809',
