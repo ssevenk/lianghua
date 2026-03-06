@@ -119,7 +119,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     g2: 22.8,
     远期增速: 1.5 * HUSHEN_G,
     分红率: 34.45,
-    回购率: 33.7 / 2,
+    回购率: 33.7,
     股权折价: 0.79,
     额外价值: 0,
     确定性: false
@@ -132,7 +132,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     g2: HUSHEN_G,
     远期增速: HUSHEN_G,
     分红率: 36.9,
-    回购率: 2.3 / 2,
+    回购率: 2.3,
     股权折价: 1,
     额外价值: 2,
     确定性: true
