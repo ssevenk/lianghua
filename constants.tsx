@@ -8,7 +8,7 @@
 
 import { StockConfig, Property } from './types';
 
-export const ZHE_XIAN = 0.03;
+export const ZHE_XIAN = 0.04;
 export const ALL_DEBT = 244438 - 43.41 * 700
 export const MI_RATIO = 0.200375566;
 export const MA_RATIO = 0.16890258;
