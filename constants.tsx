@@ -68,7 +68,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 分红率和回购率也得基于 Non-IFRS 口径，这样才一致
     分红率: 13.62,
     回购率: 46.6,
-    股权折价: 0.79,
+    股权折价: 0.8,
     额外价值: 0,
     确定性: true
   },
@@ -94,7 +94,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     远期增速: 1.5 * HUSHEN_G,
     分红率: 90,
     回购率: 0,
-    股权折价: 0.79,
+    股权折价: 0.8,
     额外价值: 0,
     确定性: true
   },
@@ -146,7 +146,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     远期增速: 1.5 * HUSHEN_G,
     分红率: 35,
     回购率: 16.4,
-    股权折价: 0.79,
+    股权折价: 0.8,
     额外价值: 0,
     确定性: false
   },
