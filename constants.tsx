@@ -10,11 +10,11 @@ import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
 export const ALL_DEBT = 214265
-export const MI_RATIO = 0.195131287;
-export const MA_RATIO = 0.169424433;
+export const MI_RATIO = 0.193786596;
+export const MA_RATIO = 0.168710426;
 
 // 初始资金常量
-export const MI_INITIAL = 674964;
+export const MI_INITIAL = 689964;
 export const MA_INITIAL = 400000;
 // 妈妈今年初始资产 (用于收益率计算基准)
 export const MA_YEAR_START_ASSET = 546776;
@@ -50,7 +50,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600938', tag: '石油', num: 500 },
   { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
   { tag: '有色', num: 700, code: 'SH601899' },
-  { tag: '现金', num: 108152 + 43.41 * 100, name: '人民币' },
+  { tag: '现金', num: 127542, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 4600, name: '黄金etf' },
 ];
 
