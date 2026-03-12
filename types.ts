@@ -15,7 +15,6 @@ export interface StockConfig {
   ifPrice?: number;
   roic?: number;
   cashP?: number;
-  确定性?: boolean; // 指股东能获得上述中性利润的概率有多大，基于商业模式等六维度表得出
 }
 
 export interface Property {

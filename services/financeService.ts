@@ -56,15 +56,14 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
       (y1 + dy2 + dy3 + dy4 + dy5 + dy6 + dy7 + dy8 + dy9 + dy10) / 100
   };
 
-  // 不确定性的企业，减去一档的风险溢价
-  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)
+  const v1Num = calculatePev(price) + calculatePbv(price) + (stock.额外价值 || 0)
   const v1 = v1Num.toFixed(2);
 
   const p2 = price * 1.05;
-  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)).toFixed(2);
+  const v2 = (calculatePev(p2) + calculatePbv(p2) + (stock.额外价值 || 0)).toFixed(2);
 
   const p3 = price * 0.95;
-  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0) - (!stock.确定性 ? 20 : 0)).toFixed(2);
+  const v3 = (calculatePev(p3) + calculatePbv(p3) + (stock.额外价值 || 0)).toFixed(2);
 
   return { ...stock, name, price, v: v1, v2, v3, p2, p3, zhenshiPe, normalPe };
 };

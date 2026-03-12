@@ -69,8 +69,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 13.62,
     回购率: 46.6,
     股权折价: 0.8,
-    额外价值: 0,
-    确定性: true
+    额外价值: 0
   },
   茅台: {
     code: 'SH600519',
@@ -82,8 +81,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 75,
     回购率: 1.86,
     股权折价: 1,
-    额外价值: 2,
-    确定性: true
+    额外价值: 2
   },
   港交: {
     code: 'HK00388',
@@ -95,8 +93,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 90,
     回购率: 0,
     股权折价: 0.8,
-    额外价值: 0,
-    确定性: true
+    额外价值: 0
   },
   沪深: {
     code: 'SH510300',
@@ -108,8 +105,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 39.99,
     回购率: 2.78,
     股权折价: 1,
-    额外价值: 2,
-    确定性: true
+    额外价值: 2
   },
   长电: {
     code: 'SH600900',
@@ -121,8 +117,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 71.8,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2,
-    确定性: true
+    额外价值: 2
   },
   招行: {
     code: 'SH600036',
@@ -134,8 +129,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 35.3,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2,
-    确定性: true
+    额外价值: 2
   },
   泡泡: {
     code: 'HK09992',
@@ -143,12 +137,11 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     动态收益: 10.89,
     g1: 31.2,
     g2: 22.8,
-    远期增速: 1.5 * HUSHEN_G,
+    远期增速: 0.5 * HUSHEN_G,
     分红率: 35,
     回购率: 16.4,
     股权折价: 0.8,
-    额外价值: 0,
-    确定性: false
+    额外价值: 0
   },
   汾酒: {
     code: 'SH600809',
@@ -156,12 +149,11 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     动态收益: 10,
     g1: 6.9,
     g2: 9.3,
-    远期增速: HUSHEN_G,
+    远期增速: 0.5 * HUSHEN_G,
     分红率: 60.39,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2,
-    确定性: false
+    额外价值: 2
   },
   顺丰: {
     code: 'SZ002352',
@@ -169,12 +161,11 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     目标价格: 53.55,
     g1: 14.51,
     g2: 13.28,
-    远期增速: HUSHEN_G,
+    远期增速: 0.5 * HUSHEN_G,
     分红率: 35,
     回购率: 9.88,
     股权折价: 1,
-    额外价值: 3,
-    确定性: false
+    额外价值: 3
   },
   阿胶: {
     code: 'SZ000423',
@@ -182,12 +173,11 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     目标价格: 73.61,
     g1: 14.92,
     g2: 14.58,
-    远期增速: HUSHEN_G,
+    远期增速: 0,
     分红率: 90, // 任何企业分红+回购上限90，不能按100算（10年百分百分红不现实）
     回购率: 0,
     股权折价: 1,
-    额外价值: 3,
-    确定性: false
+    额外价值: 3
   },
   老窖: {
     code: 'SZ000568',
@@ -195,12 +185,11 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     目标价格: 147,
     g1: 6.56,
     g2: 8.78,
-    远期增速: HUSHEN_G,
+    远期增速: 0,
     分红率: 72.5,
     回购率: 0,
     股权折价: 1,
-    额外价值: 3,
-    确定性: false
+    额外价值: 3
   },
   // 福耀: {
   //   code: 'SH600660',
