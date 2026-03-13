@@ -77,7 +77,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     动态收益: 72.05,
     g1: 5.02,
     g2: 5.41,
-    远期增速: 2 * HUSHEN_G,
+    远期增速: 4 * HUSHEN_G,
     分红率: 75,
     回购率: 1.86,
     股权折价: 1,
