@@ -1,12 +1,9 @@
 
 export interface StockConfig {
   code: string;
-  历史估值?: number;
   目标价格?: number;
   动态收益: number;
-  g1?: number; // 未来第一年
-  g2?: number; // 未来第二年
-  远期增速?: number;
+  增速?: number;
   分红率?: number;
   回购率?: number;
   股权折价?: number;

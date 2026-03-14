@@ -40,11 +40,9 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const calculatePbv = (currPrice: number) => {
     const zPe = currPrice / stock.动态收益 || 1;
     const y1 = 100 / zPe;
-    const g = 1 + (stock.远期增速 || 0) / 100
-    const g1 = 1 + (stock.g1 || 0) / 100
-    const g2 = 1 + (stock.g2 || 0) / 100
-    const dy2 = (y1 * g1) / (1 + ZHE_XIAN);
-    const dy3 = (dy2 * g2) / (1 + ZHE_XIAN);
+    const g = 1 + (stock.增速 || 0) / 100
+    const dy2 = (y1 * g) / (1 + ZHE_XIAN);
+    const dy3 = (dy2 * g) / (1 + ZHE_XIAN);
     const dy4 = (dy3 * g) / (1 + ZHE_XIAN);
     const dy5 = (dy4 * g) / (1 + ZHE_XIAN);
     const dy6 = (dy5 * g) / (1 + ZHE_XIAN);
