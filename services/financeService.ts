@@ -33,8 +33,8 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
     const zPe = currPrice / stock.动态收益;
     // 沪深300没有目标价，不做pe价值计算（不用历史估值，这个没什么参考意义，利率时代等都已经变了）
     if (!normalPe) return 0;
-    // 估值回归有时间和预测上的不确定性，按大概率(70%)来算
-    return 70 * (normalPe / (zPe || 1) - 1)
+    // 按照3年后（乘以3年增速）估值大概率回归（70%）回归来算
+    return 70 * (normalPe / (zPe / Math.pow(1 + (stock.增速 || 0) / 100, 3)) - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
