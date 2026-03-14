@@ -23,19 +23,19 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  * 核心建模计算：根据折现模型和估值指标计算个股合理分值
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
-  // 目标价格pe计算,封顶30
-  const normalPe = Math.min(30, (stock.目标价格 || 0) / stock.动态收益)
-
-  // 沪深300没有目标价格，只用历史pe和growpe来算
   const zhenshiPe = price / stock.动态收益
+  // 目标价格pe计算,机构都是往大了说，他们的目标价要打9折。pe封顶30
+  let normalPe = Math.min(30, ((stock.目标价格 || 0) * 0.9) / stock.动态收益)
+  if (!normalPe) {
+    // 沪深300没有目标价格，就用现在的pe
+    normalPe = zhenshiPe
+  }
+
 
   const calculatePev = (currPrice: number) => {
-    const zPe = currPrice / stock.动态收益;
-    const g = 1 + (stock.增速 || 0) / 100
-    // 沪深300没有目标价，不做pe价值计算（不用历史估值，这个没什么参考意义，利率时代等都已经变了）
-    if (!normalPe) return (g - 1) * 100;
+    const forwardPe = (currPrice / stock.动态收益) / (1 + (stock.增速 || 0) / 100)
     // 按照1年后（乘以1年增速）估值概率回归（70%）回归来算
-    return 70 * (normalPe / (zPe / g) - 1)
+    return 70 * (normalPe / forwardPe - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
