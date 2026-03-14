@@ -24,8 +24,8 @@ import { fetchStockPrices, fetchExchangeRates } from './api';
  */
 export const calculateValue = (name: string, stock: StockConfig, price: number): CalculatedStock => {
   const zhenshiPe = price / stock.动态收益
-  // 目标价格pe计算,机构都是往大了说，他们的目标价要打9折。pe封顶30
-  let normalPe = Math.min(30, ((stock.目标价格 || 0) * 0.9) / stock.动态收益)
+  // 目标价格pe计算,机构都是往大了说，他们的目标价打8折才是中性预期。pe封顶30
+  let normalPe = Math.min(30, ((stock.目标价格 || 0) * 0.8) / stock.动态收益)
   if (!normalPe) {
     // 沪深300没有目标价格，就用现在的pe
     normalPe = zhenshiPe
@@ -34,8 +34,8 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const calculatePev = (currPrice: number) => {
     const forwardPe = (currPrice / stock.动态收益) / (1 + (stock.增速 || 0) / 100)
-    // 按照1年后（乘以1年增速）估值概率回归（70%）回归来算
-    return 70 * (normalPe / forwardPe - 1)
+    // 按照1年后（乘以1年增速）估值回归来算
+    return normalPe / forwardPe - 1
   };
 
   const calculatePbv = (currPrice: number) => {
