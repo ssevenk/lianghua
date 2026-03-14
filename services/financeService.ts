@@ -35,7 +35,7 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
   const calculatePev = (currPrice: number) => {
     const forwardPe = (currPrice / stock.动态收益) / (1 + (stock.增速 || 0) / 100)
     // 按照1年后（乘以1年增速）估值回归来算
-    return normalPe / forwardPe - 1
+    return 100 * (normalPe / forwardPe - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
