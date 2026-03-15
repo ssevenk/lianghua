@@ -73,7 +73,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'SH600519',
     目标价格: 1882.29,
     动态收益: 21.38 + 14.8 + 15.35 + 18.607,
-    增速: 1.5 * HUSHEN_G,
+    增速: 2 * HUSHEN_G,
     分红率: 75,
     回购率: 1.86,
     股权折价: 1,
