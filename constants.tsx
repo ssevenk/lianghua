@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 214265
+export const ALL_DEBT = 214455
 export const MI_RATIO = 0.195873379;
 export const MA_RATIO = 0.169267677;
 
@@ -33,8 +33,8 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 400, name: '腾讯', exchange: 'hk' },
   { tag: '现金', num: 0, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
-  { tag: '现金', num: 3363 + 57125 - 50847, name: '港币', exchange: 'hk' },
-  { tag: '现金', num: 3823 + 17.27 + 120.47 + 74.97 * 7.6144, name: '美元', exchange: 'us' },
+  { tag: '现金', num: 3363 + 457927 - 421600, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 3100, danbao: true },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
   { code: 'SH600938', tag: '石油', num: 300, danbao: true },
@@ -50,7 +50,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600938', tag: '石油', num: 500 },
   { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
   { tag: '有色', num: 700, code: 'SH601899' },
-  { tag: '现金', num: 127542 - 12000, name: '人民币' },
+  { tag: '现金', num: 115570, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 4600, name: '黄金etf' },
 ];
 
