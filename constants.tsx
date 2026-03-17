@@ -50,7 +50,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600938', tag: '石油', num: 500 },
   { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
   { tag: '有色', num: 700, code: 'SH601899' },
-  { tag: '现金', num: 127542, name: '人民币' },
+  { tag: '现金', num: 127542 - 12000, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 4600, name: '黄金etf' },
 ];
 
