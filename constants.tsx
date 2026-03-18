@@ -61,7 +61,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   腾讯: {
     code: 'HK00700',
     目标价格: 749.78,
-    动态收益: 29.48, // 要用non-ifrs口径(投资圈估值默认用这个）
+    动态收益: 31.02, // 要用non-ifrs口径(投资圈估值默认用这个）
     增速: 2 * HUSHEN_G,
     // 分红率和回购率也得基于 Non-IFRS 口径，这样才一致
     分红率: 13.62,
