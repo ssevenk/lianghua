@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 214455
+export const ALL_DEBT = 236627
 export const MI_RATIO = 0.195873379;
 export const MA_RATIO = 0.169267677;
 
@@ -42,15 +42,15 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600809', tag: '中港', num: 0, name: '汾酒', danbao: true },
   { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
-  { tag: '有色', num: 4700, code: 'SH601899', danbao: true },
+  { tag: '有色', num: 5400, code: 'SH601899', danbao: true },
   { tag: '中港', code: 'HK09992', num: 2400, name: '泡泡玛特', exchange: 'hk' },
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 400 },
   { code: 'SH600938', tag: '石油', num: 500 },
   { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
-  { tag: '有色', num: 700, code: 'SH601899' },
-  { tag: '现金', num: 115570, name: '人民币' },
+  { tag: '有色', num: 800, code: 'SH601899' },
+  { tag: '现金', num: 112421, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 4600, name: '黄金etf' },
 ];
 
