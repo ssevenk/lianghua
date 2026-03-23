@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 236627
+export const ALL_DEBT = 289046
 export const MI_RATIO = 0.195873379;
 export const MA_RATIO = 0.169267677;
 
@@ -24,9 +24,9 @@ export const TAG_RATIO_MAP: Record<string, number> = {
   '石油': 5,
   '债券': 10,
   '有色': 5,
-  '中港': 50,
+  '中港': 60,
   '美股': 10,
-  '现金': 10
+  '现金': 0
 };
 
 export const RAW_PROPERTIES: Property[] = [
@@ -38,7 +38,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH511520', tag: '债券', name: '中债', num: 3100, danbao: true },
   { code: 'HK00883', tag: '石油', num: 7000, exchange: 'hk' },
   { code: 'SH600938', tag: '石油', num: 300, danbao: true },
-  { code: 'SH518880', tag: '黄金', num: 21600, name: '黄金etf', danbao: true },
+  { code: 'SH518880', tag: '黄金', num: 27200, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 0, name: '汾酒', danbao: true },
   { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
@@ -50,8 +50,8 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600938', tag: '石油', num: 500 },
   { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
   { tag: '有色', num: 800, code: 'SH601899' },
-  { tag: '现金', num: 112421, name: '人民币' },
-  { code: 'SH518880', tag: '黄金', num: 4600, name: '黄金etf' },
+  { tag: '现金', num: 104920, name: '人民币' },
+  { code: 'SH518880', tag: '黄金', num: 5400, name: '黄金etf' },
 ];
 
 // 沪深300增速，用来作为增速预估的基准
