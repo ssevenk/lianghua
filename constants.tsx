@@ -30,28 +30,28 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 };
 
 export const RAW_PROPERTIES: Property[] = [
-  { code: 'HK00700', tag: '中港', num: 400, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 0, name: '人民币' },
+  { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
+  { tag: '现金', num: 140206, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
-  { tag: '现金', num: 3363 + 30565 + 36338, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 3363 + 38751, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 3100, danbao: true },
-  { code: 'HK00883', tag: '石油', num: 6000, exchange: 'hk' },
-  { code: 'SH600938', tag: '石油', num: 300, danbao: true },
+  { code: 'SH600938', tag: '石油', num: 4100, danbao: true },
   { code: 'SH518880', tag: '黄金', num: 27200, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 0, name: '汾酒', danbao: true },
-  { code: 'SH600519', tag: '中港', num: 900, name: '茅台', danbao: true },
+  { code: 'SH600519', tag: '中港', num: 800, name: '茅台', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400, code: 'SH601899', danbao: true },
-  { tag: '中港', code: 'HK09992', num: 2400, name: '泡泡玛特', exchange: 'hk' },
+  { tag: '中港', code: 'HK09992', num: 2600 + 2400, name: '泡泡玛特', exchange: 'hk' },
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 400 },
   { code: 'SH600938', tag: '石油', num: 500 },
-  { code: 'SH600036', tag: '中港', num: 6600, name: '招行' },
+  { code: 'SH600036', tag: '中港', num: 0, name: '招行' },
   { tag: '有色', num: 800, code: 'SH601899' },
-  { tag: '现金', num: 104920, name: '人民币' },
+  { tag: '现金', num: 84692, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 5400, name: '黄金etf' },
+  { tag: '中港', code: 'HK09992', num: 2000, name: '泡泡玛特', exchange: 'hk' },
 ];
 
 // 沪深300增速，用来作为增速预估的基准
