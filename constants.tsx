@@ -42,7 +42,8 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600519', tag: '中港', num: 800, name: '茅台', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400, code: 'SH601899', danbao: true },
-  { tag: '中港', code: 'HK09992', num: 2600 + 2400, name: '泡泡玛特', exchange: 'hk' },
+  // 2000在咪咪账户
+  { tag: '中港', code: 'HK09992', num: 2600 + 2400 + 2000, name: '泡泡玛特', exchange: 'hk' },
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 400 },
@@ -51,7 +52,6 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '有色', num: 800, code: 'SH601899' },
   { tag: '现金', num: 84692, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 5400, name: '黄金etf' },
-  { tag: '中港', code: 'HK09992', num: 2000, name: '泡泡玛特', exchange: 'hk' },
 ];
 
 // 沪深300增速，用来作为增速预估的基准
@@ -132,8 +132,8 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   泡泡: {
     // 全部数据都更新至25年年报
     code: 'HK09992',
-    目标价格: 339.81,
-    动态收益: 10.88,
+    目标价格: 311.87,
+    动态收益: 10.61,
     增速: HUSHEN_G,
     // 25.07, 25.33, 35.03, 35.01, 25.02
     分红率: (25.07 + 25.33 + 35.03 + 35.01 + 25.02) / 5,
