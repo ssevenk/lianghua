@@ -62,7 +62,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 全部数据都更新至25年年报
     code: 'HK00700',
     // 年报-3.31
-    目标价格: 723.5,
+    目标价格: 738.5,
     动态收益: 31.02, // 要用non-ifrs口径(投资圈估值默认用这个）
     增速: 2 * HUSHEN_G,
     // 分红率和回购率也得基于 Non-IFRS 口径，这样才一致
@@ -135,7 +135,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 全部数据都更新至25年年报
     code: 'HK09992',
     // 年报发布至3.31
-    目标价格: 242.5,
+    目标价格: 248,
     动态收益: 10.61,
     增速: HUSHEN_G,
     // 25.07, 25.33, 35.03, 35.01, 25.02
