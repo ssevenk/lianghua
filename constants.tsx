@@ -31,9 +31,9 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 140206, name: '人民币' },
+  { tag: '现金', num: 3774 + 140592 + 10253, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
-  { tag: '现金', num: 3363 + 38751, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 3363 + 10188, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 3100, danbao: true },
   { code: 'SH600938', tag: '石油', num: 4100, danbao: true },
@@ -43,7 +43,7 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400, code: 'SH601899', danbao: true },
   // 2000在咪咪账户
-  { tag: '中港', code: 'HK09992', num: 2600 + 2400 + 2000, name: '泡泡玛特', exchange: 'hk' },
+  { tag: '中港', code: 'HK09992', num: 2800 + 2400 + 2000, name: '泡泡玛特', exchange: 'hk' },
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 400 },
