@@ -9,9 +9,9 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 445047
-export const MI_RATIO = 0.195873379;
-export const MA_RATIO = 0.169267677;
+export const ALL_DEBT = 439426
+export const MI_RATIO = 0.187821461;
+export const MA_RATIO = 0.162309427;
 
 // 初始资金常量
 export const MI_INITIAL = 677964;
@@ -31,7 +31,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 3774 + 140592 + 10253, name: '人民币' },
+  { tag: '现金', num: 3774 + 291006, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
   { tag: '现金', num: 3363 + 10188, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
@@ -115,18 +115,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     增速: 0.5 * HUSHEN_G,
     // 60.51, 70.57, 94.29, 73.66, 71
     分红率: 71,
-    回购率: 0,
-    股权折价: 1,
-    额外价值: 2
-  },
-  招行: {
-    // 全部数据都更新至25年年报
-    code: 'SH600036',
-    目标价格: 53.07,
-    动态收益: 5.7,
-    增速: 0.5 * HUSHEN_G,
-    // 33,33,35.01,35.32,35.32
-    分红率: 35.32,
     回购率: 0,
     股权折价: 1,
     额外价值: 2
