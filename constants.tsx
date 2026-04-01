@@ -54,9 +54,6 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH518880', tag: '黄金', num: 5400, name: '黄金etf' },
 ];
 
-// 沪深300增速，用来作为增速预估的基准
-export const HUSHEN_G = 5.17
-
 export const RAW_STOCKS: Record<string, StockConfig> = {
   腾讯: {
     // 全部数据都更新至25年年报
@@ -64,7 +61,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 年报-3.31
     目标价格: 738.5,
     动态收益: 31.02, // 要用non-ifrs口径(投资圈估值默认用这个）
-    增速: 2 * HUSHEN_G,
+    增速: 10,
     // 分红率和回购率也得基于 Non-IFRS 口径，这样才一致
     // 14.96, 16.01, 18.79, 17.05, 17.12
     分红率: (14.96 + 16.01 + 18.79 + 17.05 + 17.12) / 5,
@@ -77,7 +74,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'SH600519',
     目标价格: 1875.01,
     动态收益: 21.38 + 14.8 + 15.35 + 18.607,
-    增速: 2 * HUSHEN_G,
+    增速: 8,
     // 51.91,51.9,95.78,84.01,75
     分红率: 75,
     // 0,0,0,0,6.96
@@ -90,7 +87,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'HK00388',
     目标价格: 521.53,
     动态收益: 14.01,
-    增速: 1.5 * HUSHEN_G,
+    增速: 8,
     // 一直都是90
     分红率: 90,
     回购率: 0,
@@ -100,7 +97,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
   沪深: {
     code: 'SH510300',
     动态收益: ((4.919 / 14.6) * 4 * (1 + 0.0687)) / (3 * (1 + 0.0687) + 1),
-    增速: HUSHEN_G,
+    增速: 5.17,
     // 39.38, 40.16, 41.99, 39.63, 42.48
     分红率: (39.38 + 40.16 + 41.99 + 39.63 + 42.48) / 5,
     // 0.55,1.45,2.5,2,3.25
@@ -112,7 +109,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'SH600900',
     目标价格: 33.86,
     动态收益: 1.3964,
-    增速: 0.5 * HUSHEN_G,
+    增速: 4,
     // 60.51, 70.57, 94.29, 73.66, 71
     分红率: 71,
     回购率: 0,
@@ -125,7 +122,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 年报发布至3.31
     目标价格: 248,
     动态收益: 10.61,
-    增速: HUSHEN_G,
+    增速: 4,
     // 25.07, 25.33, 35.03, 35.01, 25.02
     分红率: (25.07 + 25.33 + 35.03 + 35.01 + 25.02) / 5,
     // 38.13, 100, 31.55, 2.09, 0
@@ -137,7 +134,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'SH600809',
     目标价格: 229.34,
     动态收益: 5.45 + 1.52 + 2.38 + 0.515,
-    增速: 0.5 * HUSHEN_G,
+    增速: 2,
     // 5.66,41.33,50.03,51.07,60.39
     分红率: 60.39,
     回购率: 0,
@@ -148,7 +145,7 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     code: 'SZ002352',
     动态收益: 0.45 + 0.71 + 0.51 + 0.525,
     目标价格: 52.53,
-    增速: 1.5 * HUSHEN_G,
+    增速: 6,
     // 20.48, 18.86, 19.63, 35, 40.34
     分红率: (20.48 + 18.86 + 19.63 + 35 + 40.34) / 5,
     // 0.72,0,0,0,0,17.3
