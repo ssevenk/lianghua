@@ -24,9 +24,9 @@ export const TAG_RATIO_MAP: Record<string, number> = {
   '石油': 5,
   '债券': 10,
   '有色': 5,
-  '中港': 55,
+  '中港': 60,
   '美股': 10,
-  '现金': 5
+  '现金': 10
 };
 
 export const RAW_PROPERTIES: Property[] = [
