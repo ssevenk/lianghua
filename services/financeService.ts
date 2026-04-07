@@ -103,9 +103,9 @@ export async function fetchDashboardData(): Promise<{
 
     tagTotals[p.tag] = (tagTotals[p.tag] || 0) + total;
 
-    // 饼图逻辑：如果是中港，拆分；否则按 tag 聚合
+    // 饼图逻辑：如果是中港或者债券，按具体资产拆分；否则按 tag 聚合
     if (total > 0) {
-      if (p.tag === '中港') {
+      if (p.tag === '中港' || p.tag === '债券') {
         tempPieItems.push({
           name: p.name || p.code || '未命名资产',
           value: total,
