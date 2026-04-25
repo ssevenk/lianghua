@@ -71,7 +71,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 1.94, 27.05, 29.01, 46.57, 28.53
     回购率: 28.53,
     股权折价: 0.8,
-    额外价值: 0
   },
   茅台: {
     // 全部数据更新至25年年报
@@ -84,7 +83,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 0,0,6.96,7.29
     回购率: 7.29,
     股权折价: 1,
-    额外价值: 2
   },
   港交: {
     // 全部数据都更新至25年年报
@@ -96,7 +94,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 90,
     回购率: 0,
     股权折价: 0.8,
-    额外价值: 0
   },
   沪深: {
     code: 'SH510300',
@@ -109,7 +106,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 0.55,1.45,2.5,2,3.25
     回购率: (0.55 + 1.45 + 2.5 + 2 + 3.25) / 5,
     股权折价: 1,
-    额外价值: 2
   },
   泡泡: {
     // 全部数据都更新至25年年报
@@ -122,7 +118,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 38.13, 100, 31.55, 2.09, 0
     回购率: 31.55,
     股权折价: 0.8,
-    额外价值: 0
   },
   汾酒: {
     // 数据更新至25年年报，目标价待更新
@@ -134,7 +129,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 65.35,
     回购率: 0,
     股权折价: 1,
-    额外价值: 2
   },
   顺丰: {
     // 全部数据都更新至25年年报
@@ -147,7 +141,6 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     // 0,0,0,8.44,13.87
     回购率: 13.87,
     股权折价: 1,
-    额外价值: 3
   },
   老窖: {
     code: 'SZ000568',
@@ -158,6 +151,5 @@ export const RAW_STOCKS: Record<string, StockConfig> = {
     分红率: 65,
     回购率: 0,
     股权折价: 1,
-    额外价值: 3
   }
 };
