@@ -44,7 +44,7 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400, code: 'SH601899', danbao: true },
   // 2000在咪咪账户
-  { tag: '中港', code: 'HK09992', num: 2800 + 3400 + 2000, name: '泡泡玛特', exchange: 'hk' },
+  { tag: '中港', code: 'HK09992', num: 2800 + 3400 + 3000, name: '泡泡玛特', exchange: 'hk' },
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 0 },
