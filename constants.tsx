@@ -10,11 +10,11 @@ import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
 export const ALL_DEBT = 358111
-export const MI_RATIO = 0.18849268;
-export const MA_RATIO = 0.16288967;
+export const MI_RATIO = 0.10222372;
+export const MA_RATIO = 0.18020572;
 
 // 初始资金常量
-export const MI_INITIAL = 677964;
+export const MI_INITIAL = 337964;
 export const MA_INITIAL = 400000;
 // 妈妈今年初始资产 (用于收益率计算基准)
 export const MA_YEAR_START_ASSET = 546776;
@@ -31,7 +31,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 267945, name: '人民币' },
+  { tag: '现金', num: 267945 - 263668, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
   { tag: '现金', num: 3473 + 6379 + 3855, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
@@ -49,11 +49,10 @@ export const RAW_PROPERTIES: Property[] = [
 
   // 咪咪账户里
   { code: 'SH511520', tag: '债券', name: '中债', num: 0 },
-  { code: 'SH600900', tag: '债券', name: '长电', num: 1600 },
+  { code: 'SH600900', tag: '债券', name: '长电', num: 0 },
   { code: 'SH600938', tag: '石油', num: 500 },
-  { code: 'SH600036', tag: '中港', num: 0, name: '招行' },
-  { tag: '有色', num: 800, code: 'SH601899' },
-  { tag: '现金', num: 5075.9, name: '人民币' },
+  { tag: '有色', num: 0, code: 'SH601899' },
+  { tag: '现金', num: 0, name: '人民币' },
   { code: 'SH518880', tag: '黄金', num: 5400, name: '黄金etf' },
 ];
 
