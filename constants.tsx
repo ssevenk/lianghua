@@ -31,7 +31,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 0, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 267945 - 263668, name: '人民币' },
+  { tag: '现金', num: 267945 - (340000 - 129649), name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
   { tag: '现金', num: 3473 + 6379 + 3855, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
@@ -53,7 +53,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SH600938', tag: '石油', num: 500 },
   { tag: '有色', num: 0, code: 'SH601899' },
   { tag: '现金', num: 0, name: '人民币' },
-  { code: 'SH518880', tag: '黄金', num: 5400, name: '黄金etf' },
+  { code: 'SH518880', tag: '黄金', num: 0, name: '黄金etf' },
 ];
 
 // eps 统一到26年q1
