@@ -10,6 +10,7 @@ import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
 export const ALL_DEBT = 358111
+export const MAX_DEBT = 358111 // 后面要逐渐降低，来清杠杆
 export const MI_RATIO = 0.10222372;
 export const MA_RATIO = 0.18020572;
 

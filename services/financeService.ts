@@ -16,6 +16,7 @@ import {
   MA_RATIO,
   ALL_DEBT,
   MA_YEAR_START_ASSET,
+  MAX_DEBT,
 } from '../constants';
 import { fetchStockPrices, fetchExchangeRates } from './api';
 
@@ -115,7 +116,7 @@ export async function fetchDashboardData(): Promise<{
 
   const nowTotalTotal = Object.values(tagTotals).reduce((acc, curr) => acc + curr, 0);
   const allClean = nowTotalTotal - ALL_DEBT;
-  const maxDebt = allDanBao * 0.25;
+  const maxDebt = Math.min(allDanBao * 0.25, MAX_DEBT)
   const availableDebt = maxDebt - ALL_DEBT
   const allTotal = allClean + Math.max(maxDebt, ALL_DEBT)
 
