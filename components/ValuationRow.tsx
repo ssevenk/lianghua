@@ -7,22 +7,17 @@ import { formatPrice, getDiffPrefix } from '../utils/formatters';
 interface ValuationRowProps {
   stock: CalculatedStock;
   maxV: number;
-  benchmarkV: number;
 }
 
-const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV, benchmarkV }) => {
-  const isBenchmark = stock.name === '沪深';
+const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV }) => {
   const currentV = Number(stock.v);
   const isWinner = currentV === maxV && maxV !== -Infinity;
   
-  const diffBenchmark = (currentV - benchmarkV).toFixed(2);
   const diffMax = (currentV - maxV).toFixed(2);
 
   const v2Val = Number(stock.v2);
   const v3Val = Number(stock.v3);
-  const v2DiffBenchmark = (v2Val - benchmarkV).toFixed(2);
   const v2DiffMax = (v2Val - maxV).toFixed(2);
-  const v3DiffBenchmark = (v3Val - benchmarkV).toFixed(2);
   const v3DiffMax = (v3Val - maxV).toFixed(2);
 
   let rowBgClass = 'bg-white hover:bg-slate-50/80';
@@ -33,11 +28,7 @@ const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV, bench
     rowBgClass = 'bg-emerald-50/50 hover:bg-emerald-100/50';
     stickyBgClass = 'bg-[#f0fdf4] group-hover:bg-[#dcfce7]';
     nameClass = 'text-emerald-900';
-  } else if (isBenchmark) {
-    rowBgClass = 'bg-amber-50/50 hover:bg-amber-100/50';
-    stickyBgClass = 'bg-[#fffbeb] group-hover:bg-[#fef3c7]';
-    nameClass = 'text-amber-900';
-  }
+  } 
 
   const RenderVGroup = ({ price, v, diffB, diffM, colorClass }: { price: number, v: string, diffB: string, diffM: string, colorClass: string }) => (
     <>
@@ -54,22 +45,13 @@ const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV, bench
         <div className="flex items-center gap-1 whitespace-nowrap overflow-hidden text-ellipsis">
           <span className="truncate">{stock.name}</span>
           {isWinner && <Trophy className="w-3 h-3 text-emerald-600 shrink-0" />}
-          {isBenchmark && (
-            <span className="text-[7px] px-0.5 py-px bg-amber-200 text-amber-900 rounded font-black tracking-tighter shrink-0">
-              BASE
-            </span>
-          )}
         </div>
       </td>
       <td className="px-2 sm:px-3 py-1.5 font-black tabular-nums text-center text-slate-900">{stock.v}</td>
       <td className="px-2 sm:px-3 py-1.5 font-bold tabular-nums whitespace-nowrap text-slate-900">{formatPrice(stock.price)}</td>
-      <td className="px-2 sm:px-3 py-1.5 font-bold tabular-nums text-slate-500">{getDiffPrefix(diffBenchmark)}{diffBenchmark}</td>
       <td className="px-2 sm:px-3 py-1.5 font-bold tabular-nums text-slate-500">{isWinner ? 'MAX' : diffMax}</td>
       <td className="px-2 sm:px-3 py-1.5 text-slate-500 tabular-nums">{stock.zhenshiPe.toFixed(1)}</td>
       <td className="px-2 sm:px-3 py-1.5 text-slate-500 tabular-nums">{stock.normalPe.toFixed(1)}</td>
-      
-      <RenderVGroup price={stock.p2} v={stock.v2} diffB={v2DiffBenchmark} diffM={v2DiffMax} colorClass="text-rose-700" />
-      <RenderVGroup price={stock.p3} v={stock.v3} diffB={v3DiffBenchmark} diffM={v3DiffMax} colorClass="text-emerald-700" />
     </tr>
   );
 };
