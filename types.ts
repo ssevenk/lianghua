@@ -4,6 +4,7 @@ export interface StockConfig {
   目标价格?: number;
   动态收益: number;
   增速?: number;
+  增速pe?: number;
   分红率?: number;
   回购率?: number;
   股权折价?: number;
