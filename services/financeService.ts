@@ -31,7 +31,8 @@ export const calculateValue = (name: string, stock: StockConfig, price: number):
 
   const calculatePev = (currPrice: number) => {
     const p = (currPrice / stock.动态收益)
-    return 100 * (normalPe / p - 1)
+    // 按一半概率来算，这部分收益只是辅助，避免受市场观点影响太大
+    return 50 * (normalPe / p - 1)
   };
 
   const calculatePbv = (currPrice: number) => {
