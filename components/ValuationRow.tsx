@@ -30,7 +30,7 @@ const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV }) => 
     nameClass = 'text-emerald-900';
   } 
 
-  const RenderVGroup = ({ price, v, diffM, colorClass }: { price: number, v: string, diffB: string, diffM: string, colorClass: string }) => (
+  const RenderVGroup = ({ price, v, diffM, colorClass }: { price: number, v: string, diffM: string, colorClass: string }) => (
     <>
       <td className={`px-2 sm:px-3 py-1.5 font-bold tabular-nums whitespace-nowrap ${colorClass}`}>¥{price.toFixed(1)}</td>
       <td className={`px-2 sm:px-3 py-1.5 font-black ${colorClass}`}>{v}</td>
