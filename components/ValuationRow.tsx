@@ -30,11 +30,10 @@ const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV }) => 
     nameClass = 'text-emerald-900';
   } 
 
-  const RenderVGroup = ({ price, v, diffB, diffM, colorClass }: { price: number, v: string, diffB: string, diffM: string, colorClass: string }) => (
+  const RenderVGroup = ({ price, v, diffM, colorClass }: { price: number, v: string, diffB: string, diffM: string, colorClass: string }) => (
     <>
       <td className={`px-2 sm:px-3 py-1.5 font-bold tabular-nums whitespace-nowrap ${colorClass}`}>¥{price.toFixed(1)}</td>
       <td className={`px-2 sm:px-3 py-1.5 font-black ${colorClass}`}>{v}</td>
-      <td className="px-2 sm:px-3 py-1.5 font-bold tabular-nums text-slate-500">{getDiffPrefix(diffB)}{diffB}</td>
       <td className="px-2 sm:px-3 py-1.5 font-bold tabular-nums text-slate-500">{diffM}</td>
     </>
   );
@@ -52,6 +51,9 @@ const ValuationRowComponent: React.FC<ValuationRowProps> = ({ stock, maxV }) => 
       <td className="px-2 sm:px-3 py-1.5 font-bold tabular-nums text-slate-500">{isWinner ? 'MAX' : diffMax}</td>
       <td className="px-2 sm:px-3 py-1.5 text-slate-500 tabular-nums">{stock.zhenshiPe.toFixed(1)}</td>
       <td className="px-2 sm:px-3 py-1.5 text-slate-500 tabular-nums">{stock.normalPe.toFixed(1)}</td>
+
+      <RenderVGroup price={stock.p2} v={stock.v2} diffM={v2DiffMax} colorClass="text-rose-700" />
+      <RenderVGroup price={stock.p3} v={stock.v3} diffM={v3DiffMax} colorClass="text-emerald-700" />
     </tr>
   );
 };
