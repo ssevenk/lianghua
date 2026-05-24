@@ -5,7 +5,7 @@ import { useDashboard } from './hooks/useDashboard';
 
 import { Header } from './components/Header';
 import { AssetOverview } from './components/AssetOverview';
-import { ValuationTable } from './components/ValuationTable';
+// import { ValuationTable } from './components/ValuationTable';
 import { AnalysisCharts } from './components/AnalysisCharts';
 import { ExchangeRateSection } from './components/ExchangeRateSection';
 
@@ -51,7 +51,7 @@ const App: React.FC = () => {
       <main className="max-w-7xl mx-auto px-3 sm:px-6 mt-3 sm:mt-4">
         <div className="space-y-4">
           {globalState && <AssetOverview globalState={globalState} lastUpdated={lastUpdated} />}
-          <ValuationTable stocks={stocks} loading={loading} />
+          {/* <ValuationTable stocks={stocks} loading={loading} /> */}
           <AnalysisCharts allocations={allocations} pieData={pieData} loading={loading} />
           {globalState && <ExchangeRateSection globalState={globalState} />}
         </div>
