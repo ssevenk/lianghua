@@ -27,11 +27,11 @@ export const TAG_RATIO_MAP: Record<string, number> = {
   '有色': 5,
   '中港': 60,
   '美股': 10,
-  '现金': 0
+  '融资': 0,  
 };
 
 export const RAW_PROPERTIES: Property[] = [
-  { code: 'HK00700', tag: '中港', num: 100, name: '腾讯', exchange: 'hk' },
+  { code: 'HK00700', tag: '融资', num: 100, name: '腾讯', exchange: 'hk' },
   { tag: '现金', num: 1096 + 4.37 + 35427, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
   { tag: '现金', num: 3473 + 10302 + 7571, name: '港币', exchange: 'hk' },
