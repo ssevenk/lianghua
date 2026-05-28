@@ -37,7 +37,7 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '现金', num: 3473 + 10302 + 7571, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 0, danbao: true },
-  { code: 'SH600900', tag: '债券', name: '长电', num: 13600, danbao: true },
+  { code: 'SH600900', tag: '债券', name: '长电', num: 12300, danbao: true },
   { code: 'SH600938', tag: '石油', num: 4100, danbao: true },
   { code: 'SH518880', tag: '黄金', num: 27200, name: '黄金etf', danbao: true },
   { code: 'SH600809', tag: '中港', num: 0, name: '汾酒', danbao: true },
