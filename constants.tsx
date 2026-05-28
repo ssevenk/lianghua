@@ -27,6 +27,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
   '有色': 5,
   '中港': 60,
   '美股': 10,
+  '现金': 0,  
   '融资': 0,  
 };
 
