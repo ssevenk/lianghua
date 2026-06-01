@@ -9,8 +9,8 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 339411
-export const MAX_DEBT = 339411 // 后面要逐渐降低，来清杠杆
+export const ALL_DEBT = 296511
+export const MAX_DEBT = 296511 // 后面要逐渐降低，来清杠杆
 export const MI_RATIO = 0.10222372;
 export const MA_RATIO = 0.18020572;
 
@@ -33,9 +33,10 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '融资', num: 100, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 1096 + 4.37 + 35427, name: '人民币' },
+  { code: 'HK00700', tag: '中港', num: 1100, name: '腾讯', exchange: 'hk' },
+  { tag: '现金', num: 0, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
-  { tag: '现金', num: 3473 + 10302 + 7571, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 56564, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 0, danbao: true },
   { code: 'SH600900', tag: '债券', name: '长电', num: 12300, danbao: true },
@@ -47,11 +48,11 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400, code: 'SH601899', danbao: true },
   // 2000在咪咪账户
-  { tag: '中港', code: 'HK09992', num: 2800 + 3400 + 3000, name: '泡泡玛特', exchange: 'hk' },
+  { tag: '中港', code: 'HK09992', num: 3400 + 3000, name: '泡泡玛特', exchange: 'hk' },
 
   // 咪咪账户里
   { code: 'SH600938', tag: '石油', num: 500 },
-  { tag: '现金', num: 0, name: '人民币' },
+  { tag: '现金', num: 5641, name: '人民币' },
 ];
 
 // eps 统一到26年q1
