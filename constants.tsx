@@ -9,10 +9,10 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 296511
-export const MAX_DEBT = 296511 // 后面要逐渐降低，来清杠杆
-export const MI_RATIO = 0.10222372;
-export const MA_RATIO = 0.18020572;
+export const ALL_DEBT = 253428
+export const MAX_DEBT = 253428 // 后面要逐渐降低，来清杠杆
+export const MI_RATIO = 0.10249243;
+export const MA_RATIO = 0.18067941;
 
 // 初始资金常量
 export const MI_INITIAL = 337964;
@@ -36,7 +36,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 1100, name: '腾讯', exchange: 'hk' },
   { tag: '现金', num: 0, name: '人民币' },
   { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
-  { tag: '现金', num: 56564, name: '港币', exchange: 'hk' },
+  { tag: '现金', num: 0, name: '港币', exchange: 'hk' },
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 0, danbao: true },
   { code: 'SH600900', tag: '债券', name: '长电', num: 12300, danbao: true },
