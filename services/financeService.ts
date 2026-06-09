@@ -118,7 +118,7 @@ export async function fetchDashboardData(): Promise<{
   const allClean = nowTotalTotal - ALL_DEBT;
   const maxDebt = Math.min(allDanBao * 0.25, MAX_DEBT)
   const availableDebt = maxDebt - ALL_DEBT
-  const allTotal = allClean
+  const allTotal = allClean + Math.max(maxDebt, ALL_DEBT)
 
   // 完成饼图数据构建
   Object.entries(otherTagTotals).forEach(([tag, val]) => {
