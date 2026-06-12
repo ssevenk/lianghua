@@ -47,7 +47,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SZ000568', tag: '中港', num: 3800, name: '老窖', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400 + 200, code: 'SH601899', danbao: true },
-  { tag: '中港', code: 'HK09992', num: 3400 + 3000, name: '泡泡玛特', exchange: 'hk' },
+  { tag: '中港', code: 'HK09992', num: 2200 + 3000, name: '泡泡玛特', exchange: 'hk' },
 ];
 
 // eps 统一到26年q1
