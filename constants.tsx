@@ -9,8 +9,8 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 289224
-export const MAX_DEBT = 289224 // 后面要逐渐降低，来清杠杆
+export const ALL_DEBT = 480812 - 192116
+export const MAX_DEBT = ALL_DEBT // 后面要逐渐降低，来清杠杆
 export const MI_RATIO = 0.10249243;
 export const MA_RATIO = 0.18067941;
 
@@ -40,11 +40,11 @@ export const RAW_PROPERTIES: Property[] = [
   { tag: '现金', num: 3.14 + 36.07 + 69.23 * 7.6144, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 0, danbao: true },
   { code: 'SH600900', tag: '债券', name: '长电', num: 12300, danbao: true },
-  { code: 'SH600938', tag: '石油', num: 4100 + 500, danbao: true },
+  { code: 'SH600938', tag: '石油', num: 4200 + 500, danbao: true },
   { code: 'SH518880', tag: '黄金', num: 27200, name: '黄金etf' },
   { code: 'SH600809', tag: '融资', num: 300, name: '汾酒', danbao: true },
   { code: 'SH600519', tag: '中港', num: 500, name: '茅台', danbao: true },
-  { code: 'SZ000568', tag: '中港', num: 1600, name: '老窖', danbao: true },
+  { code: 'SZ000568', tag: '中港', num: 3800, name: '老窖', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400 + 200, code: 'SH601899', danbao: true },
   { tag: '中港', code: 'HK09992', num: 3400 + 3000, name: '泡泡玛特', exchange: 'hk' },
