@@ -28,7 +28,6 @@ export const TAG_RATIO_MAP: Record<string, number> = {
   '中港': 60,
   '美股': 10,
   '现金': 0,  
-  '融资': 0,  
 };
 
 export const RAW_PROPERTIES: Property[] = [
