@@ -77,7 +77,7 @@ export const AssetOverview: React.FC<{ globalState: GlobalState, lastUpdated: Da
           <MiniStat title="名义总值" value={globalState.allTotal} icon={<Activity className="w-4 h-4" />} />
           <MiniStat title="担保价值" value={globalState.allDanBao} icon={<ShieldCheck className="w-4 h-4" />} />
           <MiniStat title="可用额度" value={globalState.availableDebt} icon={<Zap className="w-4 h-4" />} />
-          <MiniStat title="当前负债" value={globalState.debt} icon={<CreditCard className="w-4 h-4" />} />
+          <MiniStat title="当前杠杆" value={globalState.debt} icon={<CreditCard className="w-4 h-4" />} />
           <MiniStat title="保证金率" value={globalState.debtRatio} icon={<Percent className="w-4 h-4" />} isRatio />
         </div>
       </div>
