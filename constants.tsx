@@ -9,7 +9,7 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 376564
+export const ALL_DEBT = 376815
 export const MAX_DEBT = ALL_DEBT // 后面要逐渐降低，来清杠杆
 export const MI_RATIO = 0.095330007;
 export const MA_RATIO = 0.168053216;
@@ -32,10 +32,10 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 1200, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 431, name: '人民币' },
-  { code: 'USSPYM', tag: '美股', num: 484, exchange: 'us' },
+  { tag: '现金', num: 431 + 4330 + 1000 + 5447, name: '人民币' },
+  { code: 'USQQQM', tag: '美股', num: 146, exchange: 'us' },
   { tag: '现金', num: 945, name: '港币', exchange: 'hk' },
-  { tag: '现金', num:  225 + 87 * 7.6144, name: '美元', exchange: 'us' },
+  { tag: '现金', num:  70 + 89 * 6, name: '美元', exchange: 'us' },
   { code: 'SH511520', tag: '债券', name: '中债', num: 0, danbao: true },
   { code: 'SH600900', tag: '债券', name: '长电', num: 11900, danbao: true },
   { code: 'SH600938', tag: '石油', num: 5600 + 500, danbao: true },
