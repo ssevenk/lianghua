@@ -9,10 +9,10 @@
 import { StockConfig, Property } from './types';
 
 export const ZHE_XIAN = 0.04;
-export const ALL_DEBT = 376815
-export const MAX_DEBT = ALL_DEBT // 后面要逐渐降低，来清杠杆
-export const MI_RATIO = 0.095330007;
-export const MA_RATIO = 0.168053216;
+export const ALL_DEBT = 0;
+export const MAX_DEBT = 0;
+export const MI_RATIO = 0.0859574;
+export const MA_RATIO = 0.1515307;
 
 // 初始资金常量
 export const MI_INITIAL = 337964;
