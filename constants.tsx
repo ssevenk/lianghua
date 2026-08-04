@@ -32,7 +32,7 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 
 export const RAW_PROPERTIES: Property[] = [
   { code: 'HK00700', tag: '中港', num: 1200, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 327 + 465, name: '人民币' },
+  { tag: '现金', num: 182 + 2300 + 465, name: '人民币' },
   { code: 'USQQQM', tag: '美股', num: 146, exchange: 'us' },
   { tag: '现金', num: 945, name: '港币', exchange: 'hk' },
   { tag: '现金', num:  70 + 89 * 6, name: '美元', exchange: 'us' },
