@@ -11,8 +11,8 @@ import { StockConfig, Property } from './types';
 export const ZHE_XIAN = 0.04;
 export const ALL_DEBT = 0;
 export const MAX_DEBT = 0;
-export const MI_RATIO = 0.0741427461;
-export const MA_RATIO = 0.1535449935;
+export const MI_RATIO = 0.0831372657;
+export const MA_RATIO = 0.1520532659;
 
 // 初始资金常量
 export const MI_INITIAL = 337964;
@@ -31,8 +31,8 @@ export const TAG_RATIO_MAP: Record<string, number> = {
 };
 
 export const RAW_PROPERTIES: Property[] = [
-  { code: 'HK00700', tag: '中港', num: 1200, name: '腾讯', exchange: 'hk' },
-  { tag: '现金', num: 516891 - 50000, name: '人民币' },
+  { code: 'HK00700', tag: '中港', num: 900 + 1200 + 900, name: '腾讯', exchange: 'hk' },
+  { tag: '现金', num: 57164 + 456650, name: '人民币' },
   { code: 'USQQQM', tag: '美股', num: 146, exchange: 'us' },
   { tag: '现金', num: 551, name: '港币', exchange: 'hk' },
   { tag: '现金', num:  70 + 89 * 6, name: '美元', exchange: 'us' },
@@ -44,7 +44,7 @@ export const RAW_PROPERTIES: Property[] = [
   { code: 'SZ000568', tag: '中港', num: 8100, name: '老窖', danbao: true },
   { tag: '黄金', num: 145, name: '国外黄金', code: 'USIAU', exchange: 'us' },
   { tag: '有色', num: 5400 + 200, code: 'SH601899', danbao: true },
-  { tag: '中港', code: 'HK09992', num: 2200 + 3000, name: '泡泡玛特', exchange: 'hk' },
+  { tag: '中港', code: 'HK09992', num: 0, name: '泡泡玛特', exchange: 'hk' },
 ];
 
 // eps 统一到26年q1
