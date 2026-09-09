@@ -68,19 +68,6 @@ export const AssetOverview: React.FC<{ globalState: GlobalState, lastUpdated: Da
           </div>
         </div>
       </div>
-      
-      <div className="px-3 sm:px-5 py-2.5 sm:py-3 space-y-2.5">
-        <div className="flex items-center gap-2">
-          <h3 className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.15em] text-slate-400">杠杆及风控状态</h3>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3">
-          <MiniStat title="名义总值" value={globalState.allTotal} icon={<Activity className="w-4 h-4" />} />
-          <MiniStat title="担保价值" value={globalState.allDanBao} icon={<ShieldCheck className="w-4 h-4" />} />
-          <MiniStat title="可用额度" value={globalState.availableDebt} icon={<Zap className="w-4 h-4" />} />
-          <MiniStat title="当前杠杆" value={globalState.debt} icon={<CreditCard className="w-4 h-4" />} />
-          <MiniStat title="保证金率" value={globalState.debtRatio} icon={<Percent className="w-4 h-4" />} isRatio />
-        </div>
-      </div>
     </div>
   );
 };
