@@ -96,7 +96,6 @@ export async function fetchDashboardData(): Promise<{
     if (p.exchange === 'us') total /= rates.us;
 
     if (isNaN(total)) total = 0;
-    if (p.danbao) allDanBao += total;
 
     tagTotals[p.tag] = (tagTotals[p.tag] || 0) + total;
 

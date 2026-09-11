@@ -48,11 +48,6 @@ const HeaderComponent: React.FC<HeaderProps> = ({ globalState, stocks, allocatio
         maAssetCNY: Math.floor(globalState.maAsset),
         maProfitAmountCNY: Math.floor(maProfitAmount),
         maProfitYield: maProfitYield.toFixed(2) + '%',
-        leverageRatio: globalState.debtRatio + '%',
-        totalAssetLeveragedCNY: Math.floor(globalState.allTotal),
-        collateralValueCNY: Math.floor(globalState.allDanBao),
-        availableDebtCNY: Math.floor(globalState.availableDebt),
-        currentDebtCNY: Math.floor(globalState.debt)
       },
       stockValuations: stocks.map(s => ({
         name: s.name,

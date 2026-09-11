@@ -20,7 +20,6 @@ export interface Property {
   num: number;
   name?: string;
   exchange?: 'us' | 'hk' | 'hs';
-  danbao?: boolean;
   ifPrice?: number;
 }
 
